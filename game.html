@@ -23,6 +23,19 @@
       </div>
     </div>
   </div>
+  <section id="username-screen" class="connection-screen username-screen" aria-labelledby="username-title" aria-modal="true" role="dialog">
+    <div class="username-card">
+      <div class="username-brand-mark" aria-hidden="true">W</div>
+      <h1 id="username-title">Choose Username</h1>
+      <p>Pick a name to use when you join games.</p>
+      <form id="username-form">
+        <label for="username-input">Username</label>
+        <input id="username-input" name="username" type="text" maxlength="20" autocomplete="nickname" spellcheck="false" placeholder="Enter your username" required />
+        <p id="username-error" class="username-error" role="alert" hidden></p>
+        <button id="username-continue" type="submit">Continue</button>
+      </form>
+    </div>
+  </section>
   <section id="game-loading-screen" class="connection-screen loading-screen" hidden aria-label="Loading game" aria-live="polite">
     <button id="game-loading-cancel" class="loading-close-button" type="button" aria-label="Cancel loading">
       <img src="uploads/cancelButton.png" alt="" aria-hidden="true" />
@@ -609,6 +622,17 @@
     }
   </script>
   <script src="inventory.js"></script>
+  <script>
+    document.getElementById("username-form")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const input = document.getElementById("username-input");
+      const username = String(input?.value || "").trim().replace(/\s+/g, " ");
+      if (!/^[A-Za-z0-9 _-]{3,20}$/.test(username)) return;
+      const screen = document.getElementById("username-screen");
+      if (screen) screen.hidden = true;
+      window.dispatchEvent(new CustomEvent("webblox:username-chosen", { detail: { username } }));
+    });
+  </script>
   <script type="module" src="main.js"></script>
 </body>
 </html>
