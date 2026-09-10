@@ -183,7 +183,7 @@ function initializeRobloxThumbnailLighting(scene, canvas) {
   // while keeping the render cost bounded on high-density screens.
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(new THREE.Color(0x000000), 0.0);
+  renderer.setClearColor(new THREE.Color(0x566273), 1.0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NoToneMapping;
   renderer.shadowMap.enabled = true;

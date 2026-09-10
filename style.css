@@ -410,12 +410,38 @@ textarea,
 
 #canvas {
   position: fixed;
+  background: #566273;
   inset: 0;
 }
 
 #canvas canvas {
   touch-action: none;
 }
+
+#game-fallback-world {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #8098b0 0%, #c5d0d9 58%, #6b7784 58%, #4c5865 100%);
+  pointer-events: none;
+}
+
+.fallback-platform,
+.fallback-brick {
+  position: absolute;
+  background: #8b949e;
+  border: 2px solid rgba(30, 38, 48, 0.45);
+  box-shadow: inset 0 8px rgba(255, 255, 255, 0.18), 0 14px 20px rgba(17, 24, 39, 0.2);
+  transform: skewY(-8deg) rotate(-4deg);
+}
+
+.fallback-platform { left: 13%; right: 13%; bottom: 18%; height: 18%; background: repeating-linear-gradient(90deg, #87929e 0 44px, #77838f 44px 46px); }
+.fallback-brick { width: 13%; height: 10%; }
+.fallback-brick.brick-one { left: 26%; bottom: 36%; background: #d04b47; }
+.fallback-brick.brick-two { left: 46%; bottom: 43%; background: #3b77bd; }
+.fallback-brick.brick-three { left: 65%; bottom: 31%; background: #e0a43f; }
+
+#canvas:has(canvas) #game-fallback-world { display: none; }
 
 #performance-hud {
   position: fixed;
