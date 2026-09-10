@@ -1,0 +1,237 @@
+--[=[
+ d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
+88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
+88      88    88    88            odD'      88      88    88 88ooo88 
+88  ooo 88    88    88          .88'        88      88    88 88~~~88 
+88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88    @uniquadev
+ Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
+]=]
+
+-- Instances: 20 | Scripts: 2 | Modules: 0 | Tags: 0
+local G2L = {};
+
+-- StarterGui.RobloxLoadingGui
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"]["DisplayOrder"] = 8;
+G2L["1"]["Name"] = [[RobloxLoadingGui]];
+G2L["1"]["IgnoreGuiInset"] = true;
+
+-- StarterGui.RobloxLoadingGui.BlackFrame
+G2L["2"] = Instance.new("Frame", G2L["1"]);
+G2L["2"]["Active"] = true;
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(46, 46, 46);
+G2L["2"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["2"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["2"]["Name"] = [[BlackFrame]];
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.CloseButton
+G2L["3"] = Instance.new("ImageButton", G2L["2"]);
+G2L["3"]["Active"] = false;
+G2L["3"]["BackgroundTransparency"] = 1;
+G2L["3"]["ZIndex"] = 10;
+G2L["3"]["Image"] = [[rbxasset://textures/loading/cancelButton.png]];
+G2L["3"]["Size"] = UDim2.new(0, 32, 0, 32);
+G2L["3"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["3"]["Name"] = [[CloseButton]];
+G2L["3"]["Position"] = UDim2.new(1, -37, 0, 5);
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.GraphicsFrame
+G2L["4"] = Instance.new("Frame", G2L["2"]);
+G2L["4"]["ZIndex"] = 2;
+G2L["4"]["BorderSizePixel"] = 0;
+G2L["4"]["AnchorPoint"] = Vector2.new(1, 1);
+G2L["4"]["Size"] = UDim2.new(0.15, 0, 0.15, 0);
+G2L["4"]["Position"] = UDim2.new(0.95, 0, 0.95, 0);
+G2L["4"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["4"]["Name"] = [[GraphicsFrame]];
+G2L["4"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.GraphicsFrame.UIAspectRatioConstraint
+G2L["5"] = Instance.new("UIAspectRatioConstraint", G2L["4"]);
+
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.GraphicsFrame.UISizeConstraint
+G2L["6"] = Instance.new("UISizeConstraint", G2L["4"]);
+G2L["6"]["MaxSize"] = Vector2.new(100, 100);
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.GraphicsFrame.LoadingImage
+G2L["7"] = Instance.new("ImageLabel", G2L["4"]);
+G2L["7"]["ZIndex"] = 2;
+G2L["7"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["7"]["Image"] = [[rbxassetid://10086464520]];
+G2L["7"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["7"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["7"]["BackgroundTransparency"] = 1;
+G2L["7"]["Rotation"] = 360;
+G2L["7"]["Name"] = [[LoadingImage]];
+G2L["7"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.GraphicsFrame.LoadingImage.LocalScript
+G2L["8"] = Instance.new("LocalScript", G2L["7"]);
+-- [ERROR] cannot convert Capabilities, please report to "https://github.com/uniquadev/GuiToLuaConverter/issues"
+G2L["8"]["Sandboxed"] = true;
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame
+G2L["9"] = Instance.new("Frame", G2L["2"]);
+G2L["9"]["ZIndex"] = 2;
+G2L["9"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["9"]["Size"] = UDim2.new(0.75, 0, 1, 0);
+G2L["9"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
+G2L["9"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["9"]["Name"] = [[InfoFrame]];
+G2L["9"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.UiMessagePadding
+G2L["a"] = Instance.new("UIPadding", G2L["9"]);
+G2L["a"]["Name"] = [[UiMessagePadding]];
+G2L["a"]["PaddingBottom"] = UDim.new(0, 25);
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.UiMessageFrame
+G2L["b"] = Instance.new("Frame", G2L["9"]);
+G2L["b"]["ZIndex"] = 2;
+G2L["b"]["Size"] = UDim2.new(1, 0, 0, 35);
+G2L["b"]["Position"] = UDim2.new(0.25, 0, 1, -120);
+G2L["b"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["b"]["Name"] = [[UiMessageFrame]];
+G2L["b"]["LayoutOrder"] = 5;
+G2L["b"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.UiMessageFrame.UiMessage
+G2L["c"] = Instance.new("TextLabel", G2L["b"]);
+G2L["c"]["TextWrapped"] = true;
+G2L["c"]["ZIndex"] = 2;
+G2L["c"]["TextSize"] = 18;
+G2L["c"]["TextScaled"] = true;
+G2L["c"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Light, Enum.FontStyle.Normal);
+G2L["c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["c"]["BackgroundTransparency"] = 1;
+G2L["c"]["Size"] = UDim2.new(1, 0, 0, 25);
+G2L["c"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["c"]["Text"] = [[Joining server...]];
+G2L["c"]["Name"] = [[UiMessage]];
+G2L["c"]["Position"] = UDim2.new(0, 0, 0, 5);
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.UIAspectRatioConstraint
+G2L["d"] = Instance.new("UIAspectRatioConstraint", G2L["9"]);
+G2L["d"]["AspectRatio"] = 1.5;
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.UIListLayout
+G2L["e"] = Instance.new("UIListLayout", G2L["9"]);
+G2L["e"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Center;
+G2L["e"]["VerticalAlignment"] = Enum.VerticalAlignment.Center;
+G2L["e"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.PlaceIcon
+G2L["f"] = Instance.new("ImageLabel", G2L["9"]);
+G2L["f"]["AnchorPoint"] = Vector2.new(0.5, 0);
+G2L["f"]["Image"] = [[rbxassetid://73740498350681]];
+G2L["f"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["f"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["f"]["BackgroundTransparency"] = 1;
+G2L["f"]["LayoutOrder"] = 1;
+G2L["f"]["Name"] = [[PlaceIcon]];
+G2L["f"]["Position"] = UDim2.new(0.5, 0, 0, 0);
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.PlaceIcon.UIAspectRatioConstraint
+G2L["10"] = Instance.new("UIAspectRatioConstraint", G2L["f"]);
+G2L["10"]["AspectType"] = Enum.AspectType.ScaleWithParentSize;
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.PlaceIcon.UISizeConstraint
+G2L["11"] = Instance.new("UISizeConstraint", G2L["f"]);
+G2L["11"]["MaxSize"] = Vector2.new(256, 256);
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.PlaceIcon.LocalScript
+G2L["12"] = Instance.new("LocalScript", G2L["f"]);
+
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.PlaceLabel
+G2L["13"] = Instance.new("TextLabel", G2L["9"]);
+G2L["13"]["TextWrapped"] = true;
+G2L["13"]["ZIndex"] = 2;
+G2L["13"]["AutoLocalize"] = false;
+G2L["13"]["TextSize"] = 24;
+G2L["13"]["TextYAlignment"] = Enum.TextYAlignment.Bottom;
+G2L["13"]["TextScaled"] = true;
+G2L["13"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["13"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["13"]["BackgroundTransparency"] = 1;
+G2L["13"]["Size"] = UDim2.new(1, 0, 0, 80);
+G2L["13"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["13"]["Text"] = [[GameName]];
+G2L["13"]["LayoutOrder"] = 2;
+G2L["13"]["Name"] = [[PlaceLabel]];
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.CreatorLabel
+G2L["14"] = Instance.new("TextLabel", G2L["9"]);
+G2L["14"]["TextWrapped"] = true;
+G2L["14"]["ZIndex"] = 2;
+G2L["14"]["TextSize"] = 18;
+G2L["14"]["TextScaled"] = true;
+G2L["14"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Light, Enum.FontStyle.Normal);
+G2L["14"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["14"]["BackgroundTransparency"] = 1;
+G2L["14"]["Size"] = UDim2.new(1, 0, 0, 30);
+G2L["14"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["14"]["Text"] = [[By PlaceOwner]];
+G2L["14"]["LayoutOrder"] = 4;
+G2L["14"]["Name"] = [[CreatorLabel]];
+G2L["14"]["Position"] = UDim2.new(0, 0, 0, 80);
+
+
+-- StarterGui.RobloxLoadingGui.BlackFrame.GraphicsFrame.LoadingImage.LocalScript
+local function C_8()
+local script = G2L["8"];
+	local fadeCycleTime = 1.7
+	local turnCycleTime = 2
+	
+	local function spinnerEasingFunc(a, b, t)
+		t = t * 2
+	
+		if t < 1 then
+			return b / 2 * t*t*t + a
+		else
+			t = t - 2
+			return b / 2 * (t * t * t + 2) + b
+		end
+	end
+	
+	game.RunService.RenderStepped:Connect(function(dt)
+		local currentTime = tick()
+	
+		local timeInCycle = currentTime % turnCycleTime
+		local cycleAlpha = spinnerEasingFunc(
+			0,
+			1,
+			timeInCycle / turnCycleTime
+		)
+	
+		script.Parent.Rotation = cycleAlpha * 360
+	end)
+end;
+task.spawn(C_8);
+-- StarterGui.RobloxLoadingGui.BlackFrame.InfoFrame.PlaceIcon.LocalScript
+local function C_12()
+local script = G2L["12"];
+	local placeicon = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).IconImageAssetId
+end;
+task.spawn(C_12);
+
+return G2L["1"], require;
