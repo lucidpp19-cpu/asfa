@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <section id="username-screen" class="connection-screen username-screen" aria-labelledby="username-title" aria-modal="true" role="dialog">
+  <section id="username-screen" class="connection-screen username-screen" hidden aria-labelledby="username-title" aria-modal="true" role="dialog">
     <div class="username-card">
       <div class="username-brand-mark" aria-hidden="true">W</div>
       <h1 id="username-title">Choose Username</h1>
@@ -623,6 +623,16 @@
   </script>
   <script src="inventory.js"></script>
   <script>
+    document.getElementById("device-mode-mobile")?.addEventListener("click", () => {
+      document.documentElement.classList.add("is-mobile");
+      const prompt = document.getElementById("device-mode-prompt");
+      if (prompt) { prompt.hidden = true; prompt.setAttribute("aria-hidden", "true"); }
+    });
+    document.getElementById("device-mode-desktop")?.addEventListener("click", () => {
+      document.documentElement.classList.remove("is-mobile");
+      const prompt = document.getElementById("device-mode-prompt");
+      if (prompt) { prompt.hidden = true; prompt.setAttribute("aria-hidden", "true"); }
+    });
     document.getElementById("username-form")?.addEventListener("submit", (event) => {
       event.preventDefault();
       const input = document.getElementById("username-input");

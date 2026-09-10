@@ -3950,5 +3950,22 @@ span.game-privacy-symbol.gps-active {
       });
     })();
   </script>
+  <script>
+    (() => {
+      const baseplate = [...document.querySelectorAll("[aria-label='Baseplate'], [class*='gameCard']")].find((card) => card.querySelector(".label-0-2-114, .label-0-2-117")?.textContent.trim() === "Baseplate");
+      if (!baseplate || document.querySelector("[aria-label='Faundry Highschool RP']")) return;
+      const card = baseplate.cloneNode(true);
+      card.setAttribute("aria-label", "Faundry Highschool RP");
+      card.dataset.gameId = "faundry-highschool-rp";
+      const image = card.querySelector("img");
+      if (image) { image.src = "/uploads/image-19.png"; image.alt = "Faundry Highschool RP"; }
+      const label = card.querySelector(".label-0-2-114, .label-0-2-117");
+      if (label) label.textContent = "Faundry Highschool RP";
+      const info = card.querySelector(".infoRow-0-2-115, .infoRow-0-2-129");
+      if (info) info.innerHTML = '<span>54M visits</span><span>382K likes</span>';
+      card.addEventListener("click", () => baseplate.click());
+      baseplate.parentElement?.appendChild(card);
+    })();
+  </script>
   <script src="home-navbar.js"></script>
 </body></html>
