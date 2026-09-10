@@ -1886,8 +1886,12 @@ const multiplayer = {
 // connection attempt from blocking the real game/reconnect attempt.
 let gamePresenceVisible = window.parent === window;
 
-const loadingScreen = document.getElementById("game-loading-screen");
-const disconnectScreen = document.getElementById("game-disconnect-screen");
+  const usernameScreen = document.getElementById("username-screen");
+  const usernameForm = document.getElementById("username-form");
+  const usernameInput = document.getElementById("username-input");
+  const usernameError = document.getElementById("username-error");
+  const loadingScreen = document.getElementById("game-loading-screen");
+  const disconnectScreen = document.getElementById("game-disconnect-screen");
 const loadingTitle = document.getElementById("game-loading-title");
 const loadingCreator = document.getElementById("game-loading-creator");
 const loadingPlaceIcon = document.getElementById("game-loading-place-icon");
@@ -1901,8 +1905,54 @@ let loadingTimeout = null;
 let loadingFinishTimer = null;
 let loadingStartedAt = 0;
 let loadingActive = false;
-const MIN_LOADING_TIME_MS = 3000;
-const CONNECTION_TIMEOUT_MS = 30000;
+  const MIN_LOADING_TIME_MS = 3000;
+  const CONNECTION_TIMEOUT_MS = 30000;
+  let usernameChosen = false;
+  let requestedUsername = "";
+
+  function showUsernameScreen() {
+    if (!usernameScreen || usernameChosen) return;
+    hideConnectionScreen(loadingScreen);
+    hideConnectionScreen(disconnectScreen);
+    usernameScreen.hidden = false;
+    usernameScreen.classList.remove("is-fading");
+    window.setTimeout(() => usernameInput?.focus(), 0);
+  }
+
+  function normalizeUsername(value) {
+    return String(value || "").trim().replace(/\s+/g, " ");
+  }
+
+  window.addEventListener("webblox:username-chosen", (event) => {
+    const nextUsername = normalizeUsername(event.detail?.username);
+    if (!/^[A-Za-z0-9 _-]{3,20}$/.test(nextUsername)) return;
+    requestedUsername = nextUsername;
+    usernameChosen = true;
+    multiplayer.username = requestedUsername;
+    hideConnectionScreen(usernameScreen);
+    showLoadingScreen();
+    connectMultiplayer({ force: true });
+  });
+
+  usernameForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nextUsername = normalizeUsername(usernameInput?.value);
+    if (!/^[A-Za-z0-9 _-]{3,20}$/.test(nextUsername)) {
+      if (usernameError) {
+        usernameError.textContent = "Use 3–20 letters, numbers, spaces, dashes, or underscores.";
+        usernameError.hidden = false;
+      }
+      usernameInput?.focus();
+      return;
+    }
+    requestedUsername = nextUsername;
+    usernameChosen = true;
+    multiplayer.username = requestedUsername;
+    if (usernameError) usernameError.hidden = true;
+    hideConnectionScreen(usernameScreen);
+    showLoadingScreen();
+    connectMultiplayer({ force: true });
+  });
 
 const loadingTextTargets = [
   // TextScaled can exceed TextSize in the Roblox export, but these ceilings
@@ -2232,6 +2282,11 @@ window.addEventListener("message", (event) => {
     const wantGuest = event.data?.guest === true;
     guestModeRequested = wantGuest;
     setGamePresenceVisible(true);
+    applyLoadingContext(event.data);
+    if (!usernameChosen) {
+      showUsernameScreen();
+      return;
+    }
     showLoadingScreen(event.data);
     // The downgrade request is sent 1 second after the welcome (the reliably
     // delivered channel) via scheduleGuestRetry's path; no blind immediate
@@ -4659,7 +4714,7 @@ async function pasteAvatarImage() {
     }
     throw new Error("No image in clipboard");
   } catch (error) {
-    setAvatarEditorStatus("Clipboard image unavailable — use Insert image");
+    setAvatarEditorStatus("Clipboard image unavailable �� use Insert image");
   }
 }
 
@@ -9643,8 +9698,9 @@ function sendMultiplayerState(now) {
   const r15Animation = activeRigType === "r15" ? modelRoot?.userData?.r15Animation : null;
   try {
     multiplayer.room.send({
-      type: "state",
-      // "Play as a Guest" requested and not yet confirmed: carry the upgrade
+  type: "state",
+  ...(requestedUsername ? { username: requestedUsername, displayName: requestedUsername } : {}),
+  // "Play as a Guest" requested and not yet confirmed: carry the upgrade
       // flag on every state packet (a channel the game provably delivers to
       // the server) so the server downgrades this connection to a guest.
       wantGuest: guestModeRequested && !confirmedGuestUsername,
@@ -9809,14 +9865,27 @@ function flushPendingChatMessages() {
 }
 
 function scheduleMultiplayerReconnect(reason) {
-  // Reconnects are intentionally manual: only the button on the disconnect
-  // screen may start a new room join.
   if (!gamePresenceVisible || multiplayer.intentionalClose || multiplayer.pageClosing || multiplayer.permanentlyDisconnected) return;
-  if (multiplayer.reconnectTimer) {
-    window.clearTimeout(multiplayer.reconnectTimer);
+  if (multiplayer.reconnectTimer) return;
+  multiplayer.reconnectPending = true;
+  multiplayer.reconnectAttempt += 1;
+  const attempt = multiplayer.reconnectAttempt;
+  showDisconnectScreen({ message: "Connection lost. Reconnecting...\n(Error Code:277)" });
+  console.warn("Multiplayer reconnect scheduled", reason, attempt);
+  if (attempt > 4) {
+    multiplayer.reconnectPending = false;
+    showDisconnectScreen();
+    return;
+  }
+  const delay = Math.min(8000, 1000 * 2 ** (attempt - 1));
+  multiplayer.reconnectScheduledAt = Date.now() + delay;
+  multiplayer.reconnectTimer = window.setTimeout(() => {
     multiplayer.reconnectTimer = null;
     multiplayer.reconnectScheduledAt = 0;
-  }
+    multiplayer.reconnectPending = false;
+    reconnectFromDisconnectScreen();
+  }, delay);
+}
   multiplayer.reconnectPending = false;
   showDisconnectScreen();
   console.warn("Multiplayer reconnect requires the Reconnect button", reason);
@@ -9930,6 +9999,7 @@ async function connectMultiplayer({ force = false } = {}) {
         multiplayer.lastSnapshotAt = Date.now();
         multiplayer.snapshotWatchdogAt = 0;
         multiplayer.username = message.username || "guest";
+        if (requestedUsername && !guestModeRequested) multiplayer.username = requestedUsername;
         multiplayer.isGuest = message.isGuest === true;
         multiplayer.identityResolved = true;
         // Once a guest session is requested, never let a welcome flip the
@@ -13531,7 +13601,7 @@ let lastRenderAt = 0;
 // while hidden. A hidden join can remain pending and make the real
 // enter/reconnect attempt return early as if another connection were active.
 // Standalone game.html still connects immediately.
-if (window.parent === window) connectMultiplayer();
+  if (window.parent === window) showUsernameScreen();
 function tick() {
   requestAnimationFrame(tick);
   updatePerformanceHud();
