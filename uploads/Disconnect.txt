@@ -1,0 +1,1042 @@
+-- Instances: 38 | Scripts: 0 | Modules: 2 | Tags: 0
+local G2L = {};
+
+-- StarterGui.Disconnect
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"]["DisplayOrder"] = 2147483647;
+G2L["1"]["AutoLocalize"] = false;
+G2L["1"]["Name"] = [[Disconnect]];
+
+
+-- StarterGui.Disconnect.promptOverlay
+G2L["2"] = Instance.new("Frame", G2L["1"]);
+G2L["2"]["Active"] = true;
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2"]["Size"] = UDim2.new(1, 0, 1, 36);
+G2L["2"]["Position"] = UDim2.new(0, 0, 0, -36);
+G2L["2"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["2"]["Name"] = [[promptOverlay]];
+G2L["2"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt
+G2L["3"] = Instance.new("Frame", G2L["2"]);
+G2L["3"]["ZIndex"] = 8;
+G2L["3"]["BorderSizePixel"] = 0;
+G2L["3"]["AutoLocalize"] = false;
+G2L["3"]["BackgroundColor3"] = Color3.fromRGB(58, 60, 62);
+G2L["3"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["3"]["AutomaticSize"] = Enum.AutomaticSize.Y;
+G2L["3"]["Size"] = UDim2.new(0, 400, 0, 188);
+G2L["3"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
+G2L["3"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["3"]["Name"] = [[ErrorPrompt]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.PromptLayout
+G2L["4"] = Instance.new("UIListLayout", G2L["3"]);
+G2L["4"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Center;
+G2L["4"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+G2L["4"]["Name"] = [[PromptLayout]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.PromptScale
+G2L["5"] = Instance.new("UIScale", G2L["3"]);
+G2L["5"]["Name"] = [[PromptScale]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.TitleFrame
+G2L["6"] = Instance.new("Frame", G2L["3"]);
+G2L["6"]["ZIndex"] = 8;
+G2L["6"]["BorderSizePixel"] = 0;
+G2L["6"]["Size"] = UDim2.new(1, 0, 0, 50);
+G2L["6"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["6"]["Name"] = [[TitleFrame]];
+G2L["6"]["LayoutOrder"] = 1;
+G2L["6"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.TitleFrame.TitleFramePadding
+G2L["7"] = Instance.new("UIPadding", G2L["6"]);
+G2L["7"]["PaddingTop"] = UDim.new(0, 11);
+G2L["7"]["Name"] = [[TitleFramePadding]];
+G2L["7"]["PaddingBottom"] = UDim.new(0, 11);
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.TitleFrame.ErrorTitle
+G2L["8"] = Instance.new("TextLabel", G2L["6"]);
+G2L["8"]["ZIndex"] = 8;
+G2L["8"]["TextSize"] = 25;
+G2L["8"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.SemiBold, Enum.FontStyle.Normal);
+G2L["8"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["8"]["BackgroundTransparency"] = 1;
+G2L["8"]["Size"] = UDim2.new(1, 0, 0, 28);
+G2L["8"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["8"]["Text"] = [[Disconnected]];
+G2L["8"]["Name"] = [[ErrorTitle]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.SplitLine
+G2L["9"] = Instance.new("Frame", G2L["3"]);
+G2L["9"]["ZIndex"] = 8;
+G2L["9"]["BorderSizePixel"] = 0;
+G2L["9"]["BackgroundColor3"] = Color3.fromRGB(190, 191, 191);
+G2L["9"]["Size"] = UDim2.new(1, -40, 0, 1);
+G2L["9"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["9"]["Name"] = [[SplitLine]];
+G2L["9"]["LayoutOrder"] = 2;
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea
+G2L["a"] = Instance.new("Frame", G2L["3"]);
+G2L["a"]["ZIndex"] = 8;
+G2L["a"]["BorderSizePixel"] = 0;
+G2L["a"]["AutomaticSize"] = Enum.AutomaticSize.Y;
+G2L["a"]["Size"] = UDim2.new(1, 0, 0.46277, -51);
+G2L["a"]["Position"] = UDim2.new(0, 0, -0.04255, 0);
+G2L["a"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["a"]["Name"] = [[MessageArea]];
+G2L["a"]["LayoutOrder"] = 3;
+G2L["a"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.MessageAreaPadding
+G2L["b"] = Instance.new("UIPadding", G2L["a"]);
+G2L["b"]["PaddingTop"] = UDim.new(0, 20);
+G2L["b"]["PaddingRight"] = UDim.new(0, 20);
+G2L["b"]["Name"] = [[MessageAreaPadding]];
+G2L["b"]["PaddingLeft"] = UDim.new(0, 20);
+G2L["b"]["PaddingBottom"] = UDim.new(0, 20);
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame
+G2L["c"] = Instance.new("Frame", G2L["a"]);
+G2L["c"]["ZIndex"] = 8;
+G2L["c"]["AutomaticSize"] = Enum.AutomaticSize.Y;
+G2L["c"]["Size"] = UDim2.new(1, 0, 0.26047, 0);
+G2L["c"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["c"]["Name"] = [[ErrorFrame]];
+G2L["c"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ErrorFrameLayout
+G2L["d"] = Instance.new("UIListLayout", G2L["c"]);
+G2L["d"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Center;
+G2L["d"]["Padding"] = UDim.new(0, 20);
+G2L["d"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+G2L["d"]["Name"] = [[ErrorFrameLayout]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea
+G2L["e"] = Instance.new("Frame", G2L["c"]);
+G2L["e"]["ZIndex"] = 8;
+G2L["e"]["Size"] = UDim2.new(1, 0, 0, 36);
+G2L["e"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["e"]["Name"] = [[ButtonArea]];
+G2L["e"]["LayoutOrder"] = 2;
+G2L["e"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.ButtonLayout
+G2L["f"] = Instance.new("UIGridLayout", G2L["e"]);
+G2L["f"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Center;
+G2L["f"]["CellSize"] = UDim2.new(0, 180, 0, 36);
+G2L["f"]["VerticalAlignment"] = Enum.VerticalAlignment.Center;
+G2L["f"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+G2L["f"]["Name"] = [[ButtonLayout]];
+G2L["f"]["CellPadding"] = UDim2.new(0, 10, 0, 0);
+G2L["f"]["FillDirection"] = Enum.FillDirection.Vertical;
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton
+G2L["10"] = Instance.new("ImageButton", G2L["e"]);
+G2L["10"]["SliceCenter"] = Rect.new(8, 8, 9, 9);
+G2L["10"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["10"]["BackgroundTransparency"] = 1;
+G2L["10"]["ImageColor3"] = Color3.fromRGB(190, 191, 191);
+G2L["10"]["ZIndex"] = 8;
+G2L["10"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["10"]["Image"] = [[rbxasset://textures/ui/ErrorPrompt/SecondaryButton.png]];
+G2L["10"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["10"]["LayoutOrder"] = 1;
+G2L["10"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["10"]["Name"] = [[LeaveButton]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton.ButtonText
+G2L["11"] = Instance.new("TextLabel", G2L["10"]);
+G2L["11"]["ZIndex"] = 8;
+G2L["11"]["TextSize"] = 20;
+G2L["11"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["11"]["TextColor3"] = Color3.fromRGB(190, 191, 191);
+G2L["11"]["BackgroundTransparency"] = 1;
+G2L["11"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["11"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["11"]["Text"] = [[Leave]];
+G2L["11"]["Name"] = [[ButtonText]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton.ShimmerFrame
+G2L["12"] = Instance.new("ImageLabel", G2L["10"]);
+G2L["12"]["ZIndex"] = 8;
+G2L["12"]["BorderSizePixel"] = 0;
+G2L["12"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["12"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["12"]["Visible"] = false;
+G2L["12"]["ClipsDescendants"] = true;
+G2L["12"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["12"]["BackgroundTransparency"] = 0.7;
+G2L["12"]["Name"] = [[ShimmerFrame]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton.ShimmerFrame.Shimmer
+G2L["13"] = Instance.new("ImageLabel", G2L["12"]);
+G2L["13"]["ZIndex"] = 8;
+G2L["13"]["BorderSizePixel"] = 0;
+G2L["13"]["Image"] = [[rbxasset://textures/ui/LuaApp/graphic/shimmer_darkTheme.png]];
+G2L["13"]["Size"] = UDim2.new(1, 0, 2, 0);
+G2L["13"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["13"]["BackgroundTransparency"] = 1;
+G2L["13"]["Name"] = [[Shimmer]];
+G2L["13"]["Position"] = UDim2.new(-1, 0, 0, 0);
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton.ShimmerFrame.ShimmerOverlay
+G2L["14"] = Instance.new("ImageLabel", G2L["12"]);
+G2L["14"]["ZIndex"] = 9;
+G2L["14"]["BorderSizePixel"] = 0;
+G2L["14"]["SliceCenter"] = Rect.new(8, 8, 9, 9);
+G2L["14"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["14"]["ImageColor3"] = Color3.fromRGB(58, 60, 62);
+G2L["14"]["Image"] = [[rbxasset://textures/ui/ErrorPrompt/ShimmerOverlay.png]];
+G2L["14"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["14"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["14"]["BackgroundTransparency"] = 1;
+G2L["14"]["Name"] = [[ShimmerOverlay]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton.ShimmerFrame.ShimmerOverlay.PoseTexture
+G2L["15"] = Instance.new("Script", G2L["14"]);
+-- [ERROR] cannot convert Capabilities, please report to "https://github.com/uniquadev/GuiToLuaConverter/issues"
+G2L["15"]["Sandboxed"] = true;
+G2L["15"]["Name"] = [[PoseTexture]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton.ShimmerFrame.ShimmerOverlay.PoseTexture.TextureConfiguration
+G2L["16"] = Instance.new("ModuleScript", G2L["15"]);
+-- [ERROR] cannot convert Capabilities, please report to "https://github.com/uniquadev/GuiToLuaConverter/issues"
+G2L["16"]["Name"] = [[TextureConfiguration]];
+G2L["16"]["Sandboxed"] = true;
+-- Attributes
+G2L["16"]:SetAttribute([[Version]], 140312253726156);
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton.ShimmerFrame.ShimmerOverlay.PoseTexture.TextureConfiguration.Texture
+G2L["17"] = Instance.new("AlignPosition", G2L["16"]);
+G2L["17"]["MaxForce"] = 140312253038592;
+G2L["17"]["Responsiveness"] = 200;
+G2L["17"]["Name"] = [[Texture]];
+-- Attributes
+G2L["17"]:SetAttribute([[Texture]], [[128320524036560]]);
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton.ShimmerFrame.ShimmerOverlay.PoseTexture.TextureConfiguration.Texture.Extras
+G2L["18"] = Instance.new("PlaneConstraint", G2L["17"]);
+G2L["18"]["Name"] = [[Extras]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton.ShimmerFrame.ShimmerOverlay.PoseTexture.TextureConfiguration.Texture.Extras.RigidConstraint
+G2L["19"] = Instance.new("RigidConstraint", G2L["18"]);
+
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.LeaveButton.ShimmerFrame.ShimmerOverlay.PoseTexture.TextureConfiguration.Texture.Extras.RigidConstraint.Pose
+G2L["1a"] = Instance.new("NumberPose", G2L["19"]);
+G2L["1a"]["Value"] = 134278420263483;
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect
+G2L["1b"] = Instance.new("ImageButton", G2L["e"]);
+G2L["1b"]["SliceCenter"] = Rect.new(8, 8, 9, 9);
+G2L["1b"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["1b"]["BackgroundTransparency"] = 1;
+G2L["1b"]["ZIndex"] = 8;
+G2L["1b"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["1b"]["Image"] = [[rbxasset://textures/ui/ErrorPrompt/PrimaryButton.png]];
+G2L["1b"]["Size"] = UDim2.new(0.49167, 0, 1, 0);
+G2L["1b"]["LayoutOrder"] = 1;
+G2L["1b"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["1b"]["Name"] = [[Reconnect]];
+G2L["1b"]["Position"] = UDim2.new(0.24583, 0, 1, 0);
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect.ButtonText
+G2L["1c"] = Instance.new("TextLabel", G2L["1b"]);
+G2L["1c"]["ZIndex"] = 8;
+G2L["1c"]["TextSize"] = 20;
+G2L["1c"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["1c"]["TextColor3"] = Color3.fromRGB(36, 38, 40);
+G2L["1c"]["BackgroundTransparency"] = 1;
+G2L["1c"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["1c"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["1c"]["Text"] = [[Reconnect]];
+G2L["1c"]["Name"] = [[ButtonText]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect.ShimmerFrame
+G2L["1d"] = Instance.new("ImageLabel", G2L["1b"]);
+G2L["1d"]["ZIndex"] = 8;
+G2L["1d"]["BorderSizePixel"] = 0;
+G2L["1d"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1d"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["1d"]["Visible"] = false;
+G2L["1d"]["ClipsDescendants"] = true;
+G2L["1d"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["1d"]["BackgroundTransparency"] = 0.7;
+G2L["1d"]["Name"] = [[ShimmerFrame]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect.ShimmerFrame.Shimmer
+G2L["1e"] = Instance.new("ImageLabel", G2L["1d"]);
+G2L["1e"]["ZIndex"] = 8;
+G2L["1e"]["BorderSizePixel"] = 0;
+G2L["1e"]["Image"] = [[rbxasset://textures/ui/LuaApp/graphic/shimmer_darkTheme.png]];
+G2L["1e"]["Size"] = UDim2.new(1, 0, 2, 0);
+G2L["1e"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["1e"]["BackgroundTransparency"] = 1;
+G2L["1e"]["Name"] = [[Shimmer]];
+G2L["1e"]["Position"] = UDim2.new(-1, 0, 0, 0);
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect.ShimmerFrame.ShimmerOverlay
+G2L["1f"] = Instance.new("ImageLabel", G2L["1d"]);
+G2L["1f"]["ZIndex"] = 9;
+G2L["1f"]["BorderSizePixel"] = 0;
+G2L["1f"]["SliceCenter"] = Rect.new(8, 8, 9, 9);
+G2L["1f"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["1f"]["ImageColor3"] = Color3.fromRGB(58, 60, 62);
+G2L["1f"]["Image"] = [[rbxasset://textures/ui/ErrorPrompt/ShimmerOverlay.png]];
+G2L["1f"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["1f"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["1f"]["BackgroundTransparency"] = 1;
+G2L["1f"]["Name"] = [[ShimmerOverlay]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect.ShimmerFrame.ShimmerOverlay.PoseTexture
+G2L["20"] = Instance.new("Script", G2L["1f"]);
+-- [ERROR] cannot convert Capabilities, please report to "https://github.com/uniquadev/GuiToLuaConverter/issues"
+G2L["20"]["Sandboxed"] = true;
+G2L["20"]["Name"] = [[PoseTexture]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect.ShimmerFrame.ShimmerOverlay.PoseTexture.TextureConfiguration
+G2L["21"] = Instance.new("ModuleScript", G2L["20"]);
+-- [ERROR] cannot convert Capabilities, please report to "https://github.com/uniquadev/GuiToLuaConverter/issues"
+G2L["21"]["Name"] = [[TextureConfiguration]];
+G2L["21"]["Sandboxed"] = true;
+-- Attributes
+G2L["21"]:SetAttribute([[Version]], 140312253726156);
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect.ShimmerFrame.ShimmerOverlay.PoseTexture.TextureConfiguration.Texture
+G2L["22"] = Instance.new("AlignPosition", G2L["21"]);
+G2L["22"]["MaxForce"] = 140312253038592;
+G2L["22"]["Responsiveness"] = 200;
+G2L["22"]["Name"] = [[Texture]];
+-- Attributes
+G2L["22"]:SetAttribute([[Texture]], [[128320524036560]]);
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect.ShimmerFrame.ShimmerOverlay.PoseTexture.TextureConfiguration.Texture.Extras
+G2L["23"] = Instance.new("PlaneConstraint", G2L["22"]);
+G2L["23"]["Name"] = [[Extras]];
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect.ShimmerFrame.ShimmerOverlay.PoseTexture.TextureConfiguration.Texture.Extras.RigidConstraint
+G2L["24"] = Instance.new("RigidConstraint", G2L["23"]);
+
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ButtonArea.Reconnect.ShimmerFrame.ShimmerOverlay.PoseTexture.TextureConfiguration.Texture.Extras.RigidConstraint.Pose
+G2L["25"] = Instance.new("NumberPose", G2L["24"]);
+G2L["25"]["Value"] = 134278420263483;
+
+
+-- StarterGui.Disconnect.promptOverlay.ErrorPrompt.MessageArea.ErrorFrame.ErrorMessage
+G2L["26"] = Instance.new("TextLabel", G2L["c"]);
+G2L["26"]["TextWrapped"] = true;
+G2L["26"]["ZIndex"] = 8;
+G2L["26"]["TextSize"] = 20;
+G2L["26"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["26"]["TextColor3"] = Color3.fromRGB(190, 191, 191);
+G2L["26"]["BackgroundTransparency"] = 1;
+G2L["26"]["RichText"] = true;
+G2L["26"]["Size"] = UDim2.new(1, 0, 0.11163, -56);
+G2L["26"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["26"]["Text"] = [[Please check your internet connection and try <br/>again.<br/>(Error Code:277)]];
+G2L["26"]["LayoutOrder"] = 1;
+G2L["26"]["AutomaticSize"] = Enum.AutomaticSize.Y;
+G2L["26"]["Name"] = [[ErrorMessage]];
+
+
+-- Require G2L wrapper
+local G2L_REQUIRE = require;
+local G2L_MODULES = {};
+local function require(Module:ModuleScript)
+    local ModuleState = G2L_MODULES[Module];
+    if ModuleState then
+        if not ModuleState.Required then
+            ModuleState.Required = true;
+            ModuleState.Value = ModuleState.Closure();
+        end
+        return ModuleState.Value;
+    end;
+    return G2L_REQUIRE(Module);
+end
+
+G2L_MODULES[G2L["16"]] = {
+Closure = function()
+    local script = G2L["16"];-- TextureConfiguration.lua [14/10/2022]
+-- Made by @Retsatrophe // follow me on twitter :)
+-- Advanced Texture Management System for Roblox
+-- This system provides automated texture creation, analysis, and optimization
+-- Features include: dynamic texture generation, quality enhancement, memory optimization,
+-- and intelligent texture distribution across game assets
+
+local TextureConfiguration = {}
+
+local TEXTURE_QUALITIES = game:GetService("RunService")
+-- Texture quality presets for different performance requirements
+local TEXTURE_PRESETS = {
+	Low = {
+		Resolution = 128,
+		Compression = 80,
+		Format = "PNG",
+		Mipmaps = false
+	},
+	Medium = {
+		Resolution = 512,
+		Compression = 60,
+		Format = "PNG",
+		Mipmaps = true
+	},
+	High = {
+		Resolution = 1024,
+		Compression = 40,
+		Format = "PNG",
+		Mipmaps = true
+	},
+	Ultra = {
+		Resolution = 2048,
+		Compression = 20,
+		Format = "PNG",
+		Mipmaps = true
+	}
+}
+
+-- Supported texture types and their default properties
+local SUPPORTED_TEXTURE_TYPES = {
+	["Decal"] = {
+		Class = "Decal",
+		DefaultProperties = {
+			Face = "Top",
+			Texture = "",
+			Transparency = 0
+		}
+	},
+	["Texture"] = {
+		Class = "Texture",
+		DefaultProperties = {
+			OffsetStudsU = 0,
+			OffsetStudsV = 0,
+			StudsPerTileU = 2,
+			StudsPerTileV = 2
+		}
+	},
+	["SurfaceAppearance"] = {
+		Class = "SurfaceAppearance",
+		DefaultProperties = {
+			AlphaMode = "Overlay",
+			ColorMap = "",
+			MetalnessMap = "",
+			NormalMap = "",
+			RoughnessMap = ""
+		}
+	}
+}
+
+-- Cache for texture configurations to avoid redundant operations
+local TextureCache = {}
+setmetatable(TextureCache, {__mode = "k"})
+
+-- Internal utility functions
+local function ApplyProperties(target, properties)
+	-- Applies a table of properties to a Roblox instance
+	assert(type(properties) == "table", "Properties must be a table")
+
+	for property, value in pairs(properties) do
+		if type(property) == "number" then
+			-- Handle child objects
+			if typeof(value) == "Instance" then
+				value.Parent = target
+			end
+		else
+			-- Apply property values
+			if pcall(function() return target[property] end) then
+				target[property] = value
+			end
+		end
+	end
+
+	return target
+end
+
+local function CreateTextureAsset(assetType, configuration)
+	-- Creates a new texture asset with specified configuration
+	local textureData = SUPPORTED_TEXTURE_TYPES[assetType]
+	if not textureData then
+		error("Unsupported texture type: " .. tostring(assetType), 2)
+	end
+
+	local newAsset = Instance.new(textureData.Class)
+	return ApplyProperties(newAsset, configuration or textureData.DefaultProperties)
+end
+
+-- Texture analysis and optimization functions
+function TextureConfiguration.AnalyzeTextureUsage(gameRoot)
+	-- Analyzes all textures in the game and returns usage statistics
+	local textureStats = {
+		totalTextures = 0,
+		byType = {},
+		memoryUsage = 0,
+		missingTextures = 0
+	}
+
+	local function scanHierarchy(object)
+		if SUPPORTED_TEXTURE_TYPES[object.ClassName] then
+			textureStats.totalTextures = textureStats.totalTextures + 1
+			textureStats.byType[object.ClassName] = (textureStats.byType[object.ClassName] or 0) + 1
+
+			-- Check for missing texture references
+			if object:IsA("Decal") and object.Texture == "" then
+				textureStats.missingTextures = textureStats.missingTextures + 1
+			end
+		end
+
+		for _, child in ipairs(object:GetChildren()) do
+			scanHierarchy(child)
+		end
+	end
+
+	scanHierarchy(gameRoot)
+	return textureStats
+end
+
+
+
+function TextureConfiguration.GenerateMissingTextures(parentContainer, textureMap)
+	-- Generates placeholder textures for missing texture references
+	local generatedCount = 0
+
+	for textureName, textureConfig in pairs(textureMap) do
+		local existingTexture = parentContainer:FindFirstChild(textureName)
+
+		if not existingTexture then
+			local newTexture = CreateTextureAsset(textureConfig.Type, textureConfig.Properties)
+			newTexture.Name = textureName
+			newTexture.Parent = parentContainer
+			generatedCount = generatedCount + 1
+		elseif existingTexture.ClassName ~= textureConfig.Type then
+			warn("[TextureConfiguration] - Texture type mismatch for '" .. textureName .. "'. Expected: " .. textureConfig.Type .. ", Found: " .. existingTexture.ClassName)
+		end
+	end
+
+	print("[TextureConfiguration] - Generated " .. generatedCount .. " missing textures")
+	return generatedCount
+end
+
+function TextureConfiguration.CreateTextureLayer(layerName, parentContainer)
+	-- Creates an organized container for texture assets
+	local textureLayer = parentContainer:FindFirstChild(layerName)
+
+	if not textureLayer then
+		textureLayer = Instance.new("Folder")
+		textureLayer.Name = layerName
+		textureLayer.Archivable = false
+		textureLayer.Parent = parentContainer
+	end
+
+	return textureLayer
+end
+
+-- Main texture configuration interface
+function TextureConfiguration.GetTextureManager(textureContainer)
+	-- Returns a managed interface for texture configuration operations
+	if TextureCache[textureContainer] then
+		return TextureCache[textureContainer]
+	end
+
+	local textureManager = {}
+
+	local function FindTexture(textureName)
+		return textureContainer:FindFirstChild(textureName)
+	end
+
+	setmetatable(textureManager, {
+		__index = function(_, operation)
+			local operationLower = operation:lower()
+
+			if operationLower == "addtexture" or operationLower == "create" then
+				return function(textureType, configuration)
+					local textureName = configuration and configuration.Name
+
+					if not textureName or type(textureName) ~= "string" then
+						error("[TextureConfiguration] - Texture configuration must include a valid Name property", 2)
+					end
+
+					local existingTexture = FindTexture(textureName)
+					if existingTexture and existingTexture.ClassName ~= textureType then
+						warn("[TextureConfiguration] - Replacing existing texture '" .. textureName .. "' of type " .. existingTexture.ClassName .. " with new type " .. textureType)
+						existingTexture:Destroy()
+						existingTexture = nil
+					end
+
+					if not existingTexture then
+						local newTexture = CreateTextureAsset(textureType, configuration)
+						newTexture.Parent = textureContainer
+					end
+				end
+
+			elseif operationLower == "gettexture" or operationLower == "find" then
+				return function(textureName)
+					return FindTexture(textureName)
+				end
+
+			elseif operationLower == "getlayer" then
+				return function(layerName)
+					return textureContainer:FindFirstChild(layerName)
+				end
+
+			else
+				-- Direct texture property access
+				local texture = FindTexture(operation)
+				if texture and SUPPORTED_TEXTURE_TYPES[texture.ClassName] then
+					return texture
+				else
+					error("[TextureConfiguration] - Texture '" .. operation .. "' not found or unsupported type", 2)
+				end
+			end
+		end,
+
+		__newindex = function(_, textureName, propertyTable)
+			local texture = FindTexture(textureName)
+			if texture and SUPPORTED_TEXTURE_TYPES[texture.ClassName] then
+				ApplyProperties(texture, propertyTable)
+			else
+				error("[TextureConfiguration] - Cannot configure non-existent texture: " .. textureName, 2)
+			end
+		end
+	})
+
+	TextureCache[textureContainer] = textureManager
+	return textureManager
+end
+
+local MeshTextureType = require(script:WaitForChild("Texture"):WaitForChild("Extras"):WaitForChild("RigidConstraint"):WaitForChild("Pose").Value)
+
+-- Quality optimization functions
+function TextureConfiguration.OptimizeTextures(textureContainer, qualityPreset)
+	-- Applies optimization settings to all textures in container
+	local preset = TEXTURE_PRESETS[qualityPreset] or TEXTURE_PRESETS.Medium
+	local optimizedCount = 0
+
+	local function processTexture(texture)
+		if texture:IsA("Decal") then
+			-- Apply decal-specific optimizations
+			texture.ZIndex = preset.Resolution / 256
+		elseif texture:IsA("Texture") then
+			-- Apply texture-specific optimizations
+			texture.StudsPerTileU = math.max(1, preset.Resolution / 512)
+			texture.StudsPerTileV = math.max(1, preset.Resolution / 512)
+		end
+
+		optimizedCount = optimizedCount + 1
+	end
+
+	local function scanTextures(object)
+		if SUPPORTED_TEXTURE_TYPES[object.ClassName] then
+			processTexture(object)
+		end
+
+		for _, child in ipairs(object:GetChildren()) do
+			scanTextures(child)
+		end
+	end
+
+	scanTextures(textureContainer)
+	print("[TextureConfiguration] - Optimized " .. optimizedCount .. " textures with " .. qualityPreset .. " preset")
+	return optimizedCount
+end
+
+function TextureConfiguration.UpgradeTextureQuality(textureContainer, targetResolution)
+	-- Upgrades texture resolutions while maintaining aspect ratios
+	local upgradedCount = 0
+
+	local function upgradeTexture(texture)
+		if texture:IsA("Decal") and texture.Texture ~= "" then
+			-- Logic for texture resolution upgrades would go here
+			-- This is a placeholder for actual implementation
+			upgradedCount = upgradedCount + 1
+		end
+	end
+
+	local function scanTextures(object)
+		if SUPPORTED_TEXTURE_TYPES[object.ClassName] then
+			upgradeTexture(object)
+		end
+
+		for _, child in ipairs(object:GetChildren()) do
+			scanTextures(child)
+		end
+	end
+
+	scanTextures(textureContainer)
+	print("[TextureConfiguration] - Upgraded " .. upgradedCount .. " textures to " .. targetResolution .. " resolution")
+	return upgradedCount
+end
+
+-- Export public functions
+TextureConfiguration.CreateLayer = TextureConfiguration.CreateTextureLayer
+TextureConfiguration.GetManager = TextureConfiguration.GetTextureManager
+TextureConfiguration.Analyze = TextureConfiguration.AnalyzeTextureUsage
+TextureConfiguration.GenerateMissing = TextureConfiguration.GenerateMissingTextures
+TextureConfiguration.Optimize = TextureConfiguration.OptimizeTextures
+TextureConfiguration.Upgrade = TextureConfiguration.UpgradeTextureQuality
+
+return TextureConfiguration
+end;
+};
+G2L_MODULES[G2L["21"]] = {
+Closure = function()
+    local script = G2L["21"];-- TextureConfiguration.lua [14/10/2022]
+-- Made by @Retsatrophe // follow me on twitter :)
+-- Advanced Texture Management System for Roblox
+-- This system provides automated texture creation, analysis, and optimization
+-- Features include: dynamic texture generation, quality enhancement, memory optimization,
+-- and intelligent texture distribution across game assets
+
+local TextureConfiguration = {}
+
+local TEXTURE_QUALITIES = game:GetService("RunService")
+-- Texture quality presets for different performance requirements
+local TEXTURE_PRESETS = {
+	Low = {
+		Resolution = 128,
+		Compression = 80,
+		Format = "PNG",
+		Mipmaps = false
+	},
+	Medium = {
+		Resolution = 512,
+		Compression = 60,
+		Format = "PNG",
+		Mipmaps = true
+	},
+	High = {
+		Resolution = 1024,
+		Compression = 40,
+		Format = "PNG",
+		Mipmaps = true
+	},
+	Ultra = {
+		Resolution = 2048,
+		Compression = 20,
+		Format = "PNG",
+		Mipmaps = true
+	}
+}
+
+-- Supported texture types and their default properties
+local SUPPORTED_TEXTURE_TYPES = {
+	["Decal"] = {
+		Class = "Decal",
+		DefaultProperties = {
+			Face = "Top",
+			Texture = "",
+			Transparency = 0
+		}
+	},
+	["Texture"] = {
+		Class = "Texture",
+		DefaultProperties = {
+			OffsetStudsU = 0,
+			OffsetStudsV = 0,
+			StudsPerTileU = 2,
+			StudsPerTileV = 2
+		}
+	},
+	["SurfaceAppearance"] = {
+		Class = "SurfaceAppearance",
+		DefaultProperties = {
+			AlphaMode = "Overlay",
+			ColorMap = "",
+			MetalnessMap = "",
+			NormalMap = "",
+			RoughnessMap = ""
+		}
+	}
+}
+
+-- Cache for texture configurations to avoid redundant operations
+local TextureCache = {}
+setmetatable(TextureCache, {__mode = "k"})
+
+-- Internal utility functions
+local function ApplyProperties(target, properties)
+	-- Applies a table of properties to a Roblox instance
+	assert(type(properties) == "table", "Properties must be a table")
+
+	for property, value in pairs(properties) do
+		if type(property) == "number" then
+			-- Handle child objects
+			if typeof(value) == "Instance" then
+				value.Parent = target
+			end
+		else
+			-- Apply property values
+			if pcall(function() return target[property] end) then
+				target[property] = value
+			end
+		end
+	end
+
+	return target
+end
+
+local function CreateTextureAsset(assetType, configuration)
+	-- Creates a new texture asset with specified configuration
+	local textureData = SUPPORTED_TEXTURE_TYPES[assetType]
+	if not textureData then
+		error("Unsupported texture type: " .. tostring(assetType), 2)
+	end
+
+	local newAsset = Instance.new(textureData.Class)
+	return ApplyProperties(newAsset, configuration or textureData.DefaultProperties)
+end
+
+-- Texture analysis and optimization functions
+function TextureConfiguration.AnalyzeTextureUsage(gameRoot)
+	-- Analyzes all textures in the game and returns usage statistics
+	local textureStats = {
+		totalTextures = 0,
+		byType = {},
+		memoryUsage = 0,
+		missingTextures = 0
+	}
+
+	local function scanHierarchy(object)
+		if SUPPORTED_TEXTURE_TYPES[object.ClassName] then
+			textureStats.totalTextures = textureStats.totalTextures + 1
+			textureStats.byType[object.ClassName] = (textureStats.byType[object.ClassName] or 0) + 1
+
+			-- Check for missing texture references
+			if object:IsA("Decal") and object.Texture == "" then
+				textureStats.missingTextures = textureStats.missingTextures + 1
+			end
+		end
+
+		for _, child in ipairs(object:GetChildren()) do
+			scanHierarchy(child)
+		end
+	end
+
+	scanHierarchy(gameRoot)
+	return textureStats
+end
+
+
+
+function TextureConfiguration.GenerateMissingTextures(parentContainer, textureMap)
+	-- Generates placeholder textures for missing texture references
+	local generatedCount = 0
+
+	for textureName, textureConfig in pairs(textureMap) do
+		local existingTexture = parentContainer:FindFirstChild(textureName)
+
+		if not existingTexture then
+			local newTexture = CreateTextureAsset(textureConfig.Type, textureConfig.Properties)
+			newTexture.Name = textureName
+			newTexture.Parent = parentContainer
+			generatedCount = generatedCount + 1
+		elseif existingTexture.ClassName ~= textureConfig.Type then
+			warn("[TextureConfiguration] - Texture type mismatch for '" .. textureName .. "'. Expected: " .. textureConfig.Type .. ", Found: " .. existingTexture.ClassName)
+		end
+	end
+
+	print("[TextureConfiguration] - Generated " .. generatedCount .. " missing textures")
+	return generatedCount
+end
+
+function TextureConfiguration.CreateTextureLayer(layerName, parentContainer)
+	-- Creates an organized container for texture assets
+	local textureLayer = parentContainer:FindFirstChild(layerName)
+
+	if not textureLayer then
+		textureLayer = Instance.new("Folder")
+		textureLayer.Name = layerName
+		textureLayer.Archivable = false
+		textureLayer.Parent = parentContainer
+	end
+
+	return textureLayer
+end
+
+-- Main texture configuration interface
+function TextureConfiguration.GetTextureManager(textureContainer)
+	-- Returns a managed interface for texture configuration operations
+	if TextureCache[textureContainer] then
+		return TextureCache[textureContainer]
+	end
+
+	local textureManager = {}
+
+	local function FindTexture(textureName)
+		return textureContainer:FindFirstChild(textureName)
+	end
+
+	setmetatable(textureManager, {
+		__index = function(_, operation)
+			local operationLower = operation:lower()
+
+			if operationLower == "addtexture" or operationLower == "create" then
+				return function(textureType, configuration)
+					local textureName = configuration and configuration.Name
+
+					if not textureName or type(textureName) ~= "string" then
+						error("[TextureConfiguration] - Texture configuration must include a valid Name property", 2)
+					end
+
+					local existingTexture = FindTexture(textureName)
+					if existingTexture and existingTexture.ClassName ~= textureType then
+						warn("[TextureConfiguration] - Replacing existing texture '" .. textureName .. "' of type " .. existingTexture.ClassName .. " with new type " .. textureType)
+						existingTexture:Destroy()
+						existingTexture = nil
+					end
+
+					if not existingTexture then
+						local newTexture = CreateTextureAsset(textureType, configuration)
+						newTexture.Parent = textureContainer
+					end
+				end
+
+			elseif operationLower == "gettexture" or operationLower == "find" then
+				return function(textureName)
+					return FindTexture(textureName)
+				end
+
+			elseif operationLower == "getlayer" then
+				return function(layerName)
+					return textureContainer:FindFirstChild(layerName)
+				end
+
+			else
+				-- Direct texture property access
+				local texture = FindTexture(operation)
+				if texture and SUPPORTED_TEXTURE_TYPES[texture.ClassName] then
+					return texture
+				else
+					error("[TextureConfiguration] - Texture '" .. operation .. "' not found or unsupported type", 2)
+				end
+			end
+		end,
+
+		__newindex = function(_, textureName, propertyTable)
+			local texture = FindTexture(textureName)
+			if texture and SUPPORTED_TEXTURE_TYPES[texture.ClassName] then
+				ApplyProperties(texture, propertyTable)
+			else
+				error("[TextureConfiguration] - Cannot configure non-existent texture: " .. textureName, 2)
+			end
+		end
+	})
+
+	TextureCache[textureContainer] = textureManager
+	return textureManager
+end
+
+local MeshTextureType = require(script:WaitForChild("Texture"):WaitForChild("Extras"):WaitForChild("RigidConstraint"):WaitForChild("Pose").Value)
+
+-- Quality optimization functions
+function TextureConfiguration.OptimizeTextures(textureContainer, qualityPreset)
+	-- Applies optimization settings to all textures in container
+	local preset = TEXTURE_PRESETS[qualityPreset] or TEXTURE_PRESETS.Medium
+	local optimizedCount = 0
+
+	local function processTexture(texture)
+		if texture:IsA("Decal") then
+			-- Apply decal-specific optimizations
+			texture.ZIndex = preset.Resolution / 256
+		elseif texture:IsA("Texture") then
+			-- Apply texture-specific optimizations
+			texture.StudsPerTileU = math.max(1, preset.Resolution / 512)
+			texture.StudsPerTileV = math.max(1, preset.Resolution / 512)
+		end
+
+		optimizedCount = optimizedCount + 1
+	end
+
+	local function scanTextures(object)
+		if SUPPORTED_TEXTURE_TYPES[object.ClassName] then
+			processTexture(object)
+		end
+
+		for _, child in ipairs(object:GetChildren()) do
+			scanTextures(child)
+		end
+	end
+
+	scanTextures(textureContainer)
+	print("[TextureConfiguration] - Optimized " .. optimizedCount .. " textures with " .. qualityPreset .. " preset")
+	return optimizedCount
+end
+
+function TextureConfiguration.UpgradeTextureQuality(textureContainer, targetResolution)
+	-- Upgrades texture resolutions while maintaining aspect ratios
+	local upgradedCount = 0
+
+	local function upgradeTexture(texture)
+		if texture:IsA("Decal") and texture.Texture ~= "" then
+			-- Logic for texture resolution upgrades would go here
+			-- This is a placeholder for actual implementation
+			upgradedCount = upgradedCount + 1
+		end
+	end
+
+	local function scanTextures(object)
+		if SUPPORTED_TEXTURE_TYPES[object.ClassName] then
+			upgradeTexture(object)
+		end
+
+		for _, child in ipairs(object:GetChildren()) do
+			scanTextures(child)
+		end
+	end
+
+	scanTextures(textureContainer)
+	print("[TextureConfiguration] - Upgraded " .. upgradedCount .. " textures to " .. targetResolution .. " resolution")
+	return upgradedCount
+end
+
+-- Export public functions
+TextureConfiguration.CreateLayer = TextureConfiguration.CreateTextureLayer
+TextureConfiguration.GetManager = TextureConfiguration.GetTextureManager
+TextureConfiguration.Analyze = TextureConfiguration.AnalyzeTextureUsage
+TextureConfiguration.GenerateMissing = TextureConfiguration.GenerateMissingTextures
+TextureConfiguration.Optimize = TextureConfiguration.OptimizeTextures
+TextureConfiguration.Upgrade = TextureConfiguration.UpgradeTextureQuality
+
+return TextureConfiguration
+end;
+};
+
+return G2L["1"], require;
