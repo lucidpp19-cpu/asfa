@@ -13600,8 +13600,9 @@ let lastRenderAt = 0;
 // The home page keeps this iframe mounted, but it must not join the room
 // while hidden. A hidden join can remain pending and make the real
 // enter/reconnect attempt return early as if another connection were active.
-// Standalone game.html still connects immediately.
-  if (window.parent === window) showUsernameScreen();
+  // Standalone game.html initializes the scene and connection immediately.
+  // The username gate is only shown when the home page asks this iframe to join.
+  if (window.parent === window) connectMultiplayer();
 function tick() {
   requestAnimationFrame(tick);
   updatePerformanceHud();
