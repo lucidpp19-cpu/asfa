@@ -1,0 +1,262 @@
+/* Shared presentation tweaks for the captured game details page. */
+
+.game-details-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* The details page has its own captured stylesheet, so repeat the old
+   sidebar primitives that already exist in the home page markup. */
+.game-details-page .container-0-2-88 {
+  top: 0;
+  left: 0;
+  z-index: 999;
+  position: fixed;
+}
+
+.game-details-page .card-0-2-89 {
+  width: 175px;
+  height: 100vh;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.game-details-page .username-0-2-93 {
+  font-size: 18px;
+  padding-top: 8px;
+  margin-bottom: 0;
+  padding-bottom: 5px;
+}
+
+.game-details-page .divider-0-2-94 {
+  width: calc(100% + 10px);
+  height: 2px;
+  margin-right: -10px;
+  margin-bottom: 6px;
+}
+
+.game-details-page .upgradeNowButton-0-2-95 {
+  width: 100%;
+  font-size: 15px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 500;
+  padding-top: 8px;
+  border-radius: 8px;
+  padding-bottom: 8px;
+}
+
+.game-details-page .card-d0-0-2-96 {
+  background: rgb(222, 225, 227);
+}
+
+.game-details-page .username-d2-0-2-98 {
+  color: rgb(57, 59, 61);
+}
+
+.game-details-page .divider-d3-0-2-99 {
+  background-color: rgb(199, 203, 206);
+}
+
+.game-details-page .upgradeNowButton-d4-0-2-100 {
+  background: rgb(57, 59, 61);
+  color: white;
+}
+
+.game-details-page .home-mobile-sidebar a,
+.game-details-page .home-mobile-sidebar .name-0-2-161 {
+  color: rgb(57, 59, 61) !important;
+}
+
+.game-details-page .home-mobile-sidebar .upgradeNowButton-0-2-95 {
+  color: white !important;
+}
+
+.game-details-page .home-mobile-sidebar,
+.game-details-page .home-mobile-sidebar * {
+  color: rgb(57, 59, 61) !important;
+}
+
+.game-details-page .home-mobile-sidebar .upgradeNowButton-0-2-95 {
+  color: white !important;
+}
+
+.game-details-page .imgDesktop-0-2-12,
+.game-details-page .imgMobile-0-2-13 {
+  background-image: url("../upload/coloredlogo.png.png") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.game-details-page .imgDesktop-0-2-12 {
+  width: 148px !important;
+  height: 48px !important;
+}
+
+.game-details-page .home-disabled-link,
+.game-details-page .home-disabled-link:hover,
+.game-details-page .home-disabled-link:focus,
+.game-details-page .home-disabled-control,
+.game-details-page .home-disabled-control:hover,
+.game-details-page .home-disabled-control:focus {
+  color: inherit !important;
+  opacity: .2 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  text-decoration: none !important;
+}
+
+/* Keep the captured details navbar in the same disabled state as the home
+   navbar, even though its archived links do not carry our helper class. */
+.game-details-page .navbar-wrapper-main nav a,
+.game-details-page .navbar-wrapper-main nav a:hover,
+.game-details-page .navbar-wrapper-main nav a:focus {
+  color: inherit !important;
+  opacity: .2 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  text-decoration: none !important;
+}
+
+/* Discover is the one live destination in the game template navbar. */
+.game-details-page .navbar-wrapper-main nav a.webblox-discover-link,
+.game-details-page .navbar-wrapper-main nav a.webblox-discover-link:hover,
+.game-details-page .navbar-wrapper-main nav a.webblox-discover-link:focus {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.game-details-page .alertLink-0-2-40,
+.game-details-page .alertText-0-2-39 {
+  opacity: 1 !important;
+}
+
+.game-details-page .home-mobile-sidebar {
+  top: var(--home-navbar-height, 40px) !important;
+}
+
+.game-details-page .home-mobile-sidebar[hidden] {
+  display: none !important;
+}
+
+.game-details-page .newBuyButton-0-2-143 {
+  min-width: 58px !important;
+  min-height: 48px !important;
+}
+
+.game-details-page .webblox-join-button {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.game-details-page .favoriteButton-0-2-156,
+.game-details-page .favoriteButton-0-2-156 * {
+  color: #f5cd30 !important;
+}
+
+.game-details-page .followButton-0-2-161,
+.game-details-page .followButton-0-2-161 * {
+  color: #6c757d !important;
+}
+
+.game-details-page .container_container__Ufhp_,
+.game-details-page .chatMenu_chatMenu__3SjMs,
+.game-details-page [class*="chatMenu_"] {
+  display: none !important;
+}
+
+.game-details-page .adColumn-0-2-52,
+.game-details-page .adSkyscraper-0-2-92,
+.game-details-page .adWrapper-0-2-85,
+.game-details-page .adWrapper-0-2-97,
+.game-details-page .adImage-0-2-86 {
+  display: none !important;
+}
+
+.game-details-page .webblox-comment-button {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.game-details-page .webblox-comment-button:disabled {
+  opacity: .55 !important;
+  pointer-events: none !important;
+}
+
+.game-details-page .webblox-comment-list {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0 16px;
+}
+
+.game-details-page .webblox-comment-item {
+  padding: 10px 12px;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.game-details-page .webblox-comment-item strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #555;
+  font-size: 13px;
+}
+
+.game-details-page .webblox-comment-item p {
+  margin: 0;
+  color: #222;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.game-details-page .webblox-comment-delete {
+  margin-top: 8px;
+  margin-right: 6px;
+  padding: 3px 8px;
+  border: 1px solid #c8c8c8;
+  border-radius: 3px;
+  background: #f5f5f5;
+  color: #555;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.game-details-page .webblox-comment-item.is-pinned {
+  border-color: #f2c94c;
+  background: #fff9e6;
+}
+
+.game-details-page .webblox-pin-badge {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 1px 7px;
+  border-radius: 3px;
+  background: #f2c94c;
+  color: #6b4f00;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.game-details-page .webblox-comment-delete,
+.game-details-page .webblox-comment-pin {
+  margin-top: 8px;
+  margin-right: 6px;
+  padding: 3px 8px;
+  border: 1px solid #c8c8c8;
+  border-radius: 3px;
+  background: #f5f5f5;
+  color: #555;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.game-details-page .noCommentFound-0-2-225[hidden] {
+  display: none !important;
+}

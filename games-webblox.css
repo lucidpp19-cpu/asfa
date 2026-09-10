@@ -1,0 +1,144 @@
+/* Games uses the same saved shell as the home page. */
+body.games-webblox-page {
+  min-height: 100vh;
+  background: #f2f4f5 !important;
+}
+
+body.games-webblox-page .navbar-wrapper-main,
+body.games-webblox-page .home-mobile-sidebar {
+  z-index: 1000;
+}
+
+body.games-webblox-page .home-mobile-sidebar {
+  position: fixed !important;
+  z-index: 1200 !important;
+}
+
+/* Keep the hamburger menu identical to the Home and game-details menus. */
+body.games-webblox-page .container-0-2-88 {
+  top: 0;
+  left: 0;
+  z-index: 1200;
+  position: fixed;
+}
+
+body.games-webblox-page .card-0-2-89 {
+  width: 175px;
+  height: 100vh;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+body.games-webblox-page .username-0-2-93 {
+  font-size: 18px;
+  padding-top: 8px;
+  margin-bottom: 0;
+  padding-bottom: 5px;
+}
+
+body.games-webblox-page .divider-0-2-94 {
+  width: calc(100% + 10px);
+  height: 2px;
+  margin-right: -10px;
+  margin-bottom: 6px;
+}
+
+body.games-webblox-page .upgradeNowButton-0-2-95 {
+  width: 100%;
+  font-size: 15px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 500;
+  padding-top: 8px;
+  border-radius: 8px;
+  padding-bottom: 8px;
+}
+
+body.games-webblox-page .card-d0-0-2-96 {
+  background: rgb(222, 225, 227);
+}
+
+body.games-webblox-page .divider-d3-0-2-99 {
+  background-color: rgb(199, 203, 206);
+}
+
+body.games-webblox-page .upgradeNowButton-d4-0-2-100 {
+  background: rgb(57, 59, 61);
+  color: white;
+}
+
+body.games-webblox-page .home-mobile-sidebar,
+body.games-webblox-page .home-mobile-sidebar * {
+  color: rgb(57, 59, 61) !important;
+}
+
+body.games-webblox-page .home-mobile-sidebar .upgradeNowButton-0-2-95 {
+  color: white !important;
+}
+
+body.games-webblox-page .home-mobile-sidebar {
+  top: var(--home-navbar-height, 40px) !important;
+}
+
+body.games-webblox-page .home-mobile-sidebar[hidden] {
+  display: none !important;
+}
+
+/* Discovery keeps the game details and the running game inside the page. */
+body.games-webblox-page #games-details-frame,
+body.games-webblox-page #games-game-frame {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  background: #f2f4f5;
+}
+
+body.games-webblox-page #games-details-frame {
+  z-index: 1100;
+}
+
+body.games-webblox-page #games-game-frame {
+  z-index: 1110;
+  background: #000;
+}
+
+body.games-webblox-page #games-details-frame[hidden],
+body.games-webblox-page #games-game-frame[hidden] {
+  display: none !important;
+}
+
+body.games-webblox-page .home-disabled-link,
+body.games-webblox-page .home-disabled-link:hover,
+body.games-webblox-page .home-disabled-link:focus {
+  color: inherit !important;
+  opacity: .2 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  text-decoration: none !important;
+}
+
+body.games-webblox-page .gamesContainer-0-2-48 {
+  min-height: 230px;
+}
+
+body.games-webblox-page .games-webblox-baseplate-card {
+  opacity: 1 !important;
+}
+
+body.games-webblox-page .games-webblox-baseplate-card .img-0-2-119 {
+  object-fit: contain;
+  background: #dee1e3;
+}
+
+body.games-webblox-page .container_container__Ufhp_,
+body.games-webblox-page .chatMenu_chatMenu__3SjMs {
+  display: none !important;
+}
+
+@media (max-width: 991px) {
+  body.games-webblox-page .wrapper-0-2-8 {
+    margin-bottom: 88px;
+  }
+}

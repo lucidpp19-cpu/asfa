@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baseplate</title>
+  <link rel="icon" type="image/png" href="/upload/coloredlogo.png.png" />
+  <script src="favicon.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Source+Sans+3:wght@400;600;700&family=Source+Sans+Pro:wght@400;700&family=Montserrat:wght@500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%239fc2ff'/%3E%3Crect x='18' y='14' width='28' height='36' rx='5' fill='%23203350'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <div id="device-mode-prompt" role="dialog" aria-modal="true" aria-labelledby="device-mode-title">
+    <div class="device-mode-card">
+      <p id="device-mode-title">Whats your device?</p>
+      <div class="device-mode-actions">
+        <button id="device-mode-mobile" type="button">Mobile</button>
+        <button id="device-mode-desktop" type="button">Desktop</button>
+      </div>
+    </div>
+  </div>
+  <section id="game-loading-screen" class="connection-screen loading-screen" hidden aria-label="Loading game" aria-live="polite">
+    <button id="game-loading-cancel" class="loading-close-button" type="button" aria-label="Cancel loading">
+      <img src="uploads/cancelButton.png" alt="" aria-hidden="true" />
+    </button>
+    <div class="loading-graphics-frame" aria-hidden="true">
+      <img id="game-loading-spinner" class="loading-spinner" src="uploads/robloxTilt.png" alt="" />
+    </div>
+    <div class="loading-info-frame">
+      <img id="game-loading-place-icon" class="loading-place-icon" src="uploads/iconBase.png" alt="Baseplate" />
+      <div id="game-loading-title" class="loading-place-label" textscaled="true" data-textscaled="true">Baseplate</div>
+      <div id="game-loading-creator" class="loading-creator-label" textscaled="true" data-textscaled="true">by hardcore</div>
+      <div class="loading-message-frame">
+        <div id="game-loading-message" class="loading-message-text" textscaled="true" data-textscaled="true">Joining server...</div>
+      </div>
+    </div>
+  </section>
+  <section id="game-disconnect-screen" class="connection-screen disconnect-screen" hidden aria-label="Disconnected" aria-modal="true">
+    <div class="disconnect-prompt">
+      <div class="disconnect-title-frame">
+        <h1 id="disconnect-title">Disconnected</h1>
+      </div>
+      <div class="disconnect-split-line" aria-hidden="true"></div>
+      <div class="disconnect-message-area">
+        <div class="disconnect-error-frame">
+          <p id="disconnect-message" class="disconnect-message">Please check your internet connection and try again.
+(Error Code:277)</p>
+          <div class="disconnect-button-area">
+            <button id="disconnect-leave" class="disconnect-button disconnect-leave" type="button"><span>Leave</span></button>
+            <button id="disconnect-reconnect" class="disconnect-button disconnect-reconnect" type="button"><span>Reconnect</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div id="canvas"></div>
+  <div id="performance-hud" aria-live="polite">
+    <span id="fps-counter">FPS: --</span>
+    <span id="ping-counter">Ping: --</span>
+  </div>
+  <img id="shiftlock-center-indicator" src="uploads/Shiftlock.png" alt="" aria-hidden="true" hidden />
+  <div id="mobile-touch-gui" aria-label="TouchGui">
+    <div id="mobile-touch-control-frame">
+      <button id="mobile-jump" class="touch-sprite touch-jump" type="button" aria-label="Jump" data-image-rect-offset="1,146" data-image-rect-size="144,144"></button>
+      <div id="mobile-dynamic-thumbstick-frame">
+        <button id="mobile-thumbstick-hit-area" type="button" aria-label="Move"></button>
+        <button id="mobile-dynamic-thumbstick-modifier" type="button" tabindex="-1" aria-hidden="true"></button>
+        <span id="mobile-thumbstick-start" class="touch-sprite touch-thumbstick-start" aria-hidden="true" data-image-color="#000000" data-image-transparency="0" data-image-rect-offset="1,1" data-image-rect-size="144,144"></span>
+        <span id="mobile-thumbstick-end" class="touch-sprite touch-thumbstick-end" aria-hidden="true" data-image-color="#ffffff" data-image-transparency="0" data-image-rect-offset="1,1" data-image-rect-size="144,144"></span>
+      </div>
+    </div>
+  </div>
+  <section id="backpack-ui" class="backpack-ui" hidden aria-label="Backpack">
+    <div id="backpack-inventory" class="backpack-inventory" hidden>
+      <div class="backpack-inventory-header">
+        <span>Backpack</span>
+        <label class="backpack-search-wrap" for="backpack-search">
+          <span class="sr-only">Search inventory</span>
+          <input id="backpack-search" type="search" placeholder="Search" autocomplete="off" />
+        </label>
+        <button id="backpack-close" class="backpack-close" type="button" aria-label="Close backpack">×</button>
+      </div>
+      <div id="backpack-grid" class="backpack-grid"></div>
+    </div>
+    <div id="backpack-hotbar" class="backpack-hotbar" aria-label="Hotbar"></div>
+    <button id="backpack-open" class="backpack-open" type="button" aria-label="Open backpack" aria-expanded="false">⌃</button>
+  </section>
+  <!-- Roblox-style TopBar assets supplied with the project. -->
+  <div id="topbar" aria-label="Game controls">
+    <div class="topbar-left">
+      <button id="menu-toggle" class="topbar-icon-button" type="button" title="Open menu" aria-label="Open menu" aria-expanded="false">
+        <img class="topbar-icon-base" src="uploads/iconBase.png" alt="" aria-hidden="true" />
+        <img class="topbar-icon-image topbar-menu-image" src="upload/coloredlogo.png.png" alt="" aria-hidden="true" />
+      </button>
+      <button id="chat-toggle" class="topbar-icon-button topbar-chat-button" type="button" aria-pressed="true" title="Toggle chat visibility" aria-label="Toggle chat visibility">
+        <img class="topbar-icon-base" src="uploads/iconBase.png" alt="" aria-hidden="true" />
+        <img class="topbar-icon-image topbar-chat-image chat-image-off" src="uploads/chatOff.png" alt="" aria-hidden="true" />
+        <img class="topbar-icon-image topbar-chat-image chat-image-on" src="uploads/chatOn.png" alt="" aria-hidden="true" />
+        <span id="chat-unread-badge" class="chat-unread-badge" hidden aria-live="polite">0</span>
+      </button>
+      <button id="shiftlock-toggle" class="topbar-icon-button" type="button" aria-pressed="false" title="Enable ShiftLock" aria-label="Enable ShiftLock">
+        <img class="topbar-icon-base" src="uploads/iconBase.png" alt="" aria-hidden="true" />
+        <img class="topbar-icon-image shiftlock-toggle-image" src="uploads/ToggleOff.png" alt="" aria-hidden="true" />
+      </button>
+      <button id="avatar-editor-toggle" class="topbar-icon-button avatar-editor-toggle" type="button" title="Edit avatar" aria-label="Edit avatar" disabled>
+        <img class="topbar-icon-base" src="uploads/iconBase.png" alt="" aria-hidden="true" />
+        <img class="topbar-icon-image avatar-editor-icon" src="uploads/noFilter__10_.png" alt="" aria-hidden="true" />
+      </button>
+      <button id="minesweeper-toggle" class="topbar-icon-button" type="button" title="Minesweeper" aria-label="Minesweeper" hidden>
+        <img class="topbar-icon-base" src="uploads/iconBase.png" alt="" aria-hidden="true" />
+        <img class="topbar-icon-image minesweeper-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='20' fill='%23111'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23f2c94c'/%3E%3Cg stroke='%23111' stroke-width='5' stroke-linecap='round'%3E%3Cpath d='M32 2v12M32 50v12M2 32h12M50 32h12M11 11l9 9M44 44l9 9M53 11l-9 9M20 44l-9 9'/%3E%3C/g%3E%3C/svg%3E" alt="" aria-hidden="true" />
+      </button>
+    </div>
+    <button id="admin-toggle" class="topbar-icon-button" type="button" title="Admin" aria-label="Admin" aria-expanded="false" hidden>
+      <img class="topbar-icon-base" src="uploads/iconBase.png" alt="" aria-hidden="true" />
+      <img class="topbar-icon-image admin-icon-image" src="uploads/OwnerIcon.webp" alt="" aria-hidden="true" />
+    </button>
+    <button id="music-toggle" class="topbar-icon-button" type="button" aria-pressed="false" title="Enable music" aria-label="Enable music">
+      <img class="topbar-icon-base" src="uploads/iconBase.png" alt="" aria-hidden="true" />
+      <img class="topbar-icon-image music-toggle-image" src="uploads/Music.png" alt="" aria-hidden="true" />
+    </button>
+  </div>
+  <!-- Player list uses TopRoundedRect8px.png and BottomRoundedRect8px.png as slice caps. -->
+  <button id="player-list-toggle" type="button" aria-controls="player-list" aria-expanded="true" aria-label="Hide player list">›</button>
+  <aside id="player-list" aria-label="Players">
+    <div class="player-list-cap player-list-cap-top" aria-hidden="true">
+      <span class="player-list-cap-center"></span>
+    </div>
+    <div class="player-list-body">
+      <div id="player-list-scroll"></div>
+    </div>
+    <div class="player-list-cap player-list-cap-bottom" aria-hidden="true">
+      <span class="player-list-cap-center"></span>
+    </div>
+  </aside>
+  <div id="nametags" aria-hidden="true"></div>
+  <div id="chat-bubbles" aria-hidden="true"></div>
+  <section id="game-chat" aria-label="Game chat">
+    <div id="chat-log" class="chat-log">
+      <div class="chat-message chat-system">
+        <span class="chat-outline" aria-hidden="true">Chat '/?' or '/help' for a list of chat commands.</span>
+        <span class="chat-content">Chat '/?' or '/help' for a list of chat commands.</span>
+      </div>
+    </div>
+    <div class="chat-bar-parent">
+      <div class="chat-bar">
+        <div class="chat-box-frame">
+          <div class="chat-box-inner">
+            <button id="chat-mode" class="chat-mode" type="button"></button>
+            <textarea id="chat-input" rows="1" autocomplete="off" spellcheck="false"></textarea>
+            <div id="chat-input-preview" aria-hidden="true"></div>
+            <div id="chat-placeholder">To chat click here or press "/" key</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button id="chat-resize" class="chat-resize" type="button" title="Resize chat">
+      <img src="https://tr.rbxcdn.com/180DAY-28c7f4ce204d2d8b92379e398aab5965/420/420/Image/Webp/noFilter" alt="" />
+    </button>
+  </section>
+  <div id="chat-image-viewer" class="chat-image-viewer" hidden role="dialog" aria-modal="true" aria-label="Chat image preview">
+    <button id="chat-image-viewer-close" class="chat-image-viewer-close" type="button" aria-label="Close image preview">×</button>
+    <img id="chat-image-viewer-image" class="chat-image-viewer-image" alt="Expanded chat image" />
+  </div>
+  <aside id="admin-panel" hidden aria-label="Admin panel">
+    <div class="admin-panel-window">
+      <div class="admin-panel-bar">
+        <button id="admin-panel-back" class="admin-panel-bar-button" type="button" aria-label="Back">&lt;</button>
+        <h1 class="admin-panel-title">HD ADMIN</h1>
+        <button id="admin-panel-minimize" class="admin-panel-bar-button admin-panel-minimize-button" type="button" aria-label="Minimize">-</button>
+        <button id="admin-panel-close" class="admin-panel-bar-button admin-panel-close" type="button" aria-label="Close admin panel">X</button>
+      </div>
+      <div class="admin-panel-body">
+        <div class="admin-command-navigate"><span>NAVIGATE</span></div>
+        <div class="admin-command-search"><span class="admin-search-icon">⌕</span><input id="admin-command-search" type="search" placeholder="Search" autocomplete="off" /></div>
+        <div id="admin-command-list" class="admin-command-list">
+          <button class="admin-command-row" type="button" data-command=";fly me 16"><span class="admin-command-name">;fly me 16</span></button>
+          <button class="admin-command-row" type="button" data-command=";fly2 me 16"><span class="admin-command-name">;fly2 me 16</span></button>
+          <button class="admin-command-row" type="button" data-command=";flyspeed me 16"><span class="admin-command-name">;flyspeed me 16</span></button>
+          <button class="admin-command-row" type="button" data-command=";unfly me"><span class="admin-command-name">;unfly me</span></button>
+          <button class="admin-command-row" type="button" data-command=":respawn me"><span class="admin-command-name">:respawn me</span></button>
+          <button class="admin-command-row" type="button" data-command=":bring player"><span class="admin-command-name">:bring player</span></button>
+          <button class="admin-command-row" type="button" data-command=":kick player"><span class="admin-command-name">:kick player</span></button>
+          <button class="admin-command-row" type="button" data-command=":forceavatar victim player"><span class="admin-command-name">:forceavatar victim player</span></button>
+          <button class="admin-command-row" type="button" data-command=";unforceavatar player"><span class="admin-command-name">;unforceavatar player</span></button>
+          <button class="admin-command-row" type="button" data-command=":setnametag player nametag"><span class="admin-command-name">:setnametag player nametag</span></button>
+          <button class="admin-command-row" type="button" data-command=":setnametagcolor player hexcolor"><span class="admin-command-name">:setnametagcolor player hexcolor</span></button>
+          <button class="admin-command-row" type="button" data-command=";toggleNametag player"><span class="admin-command-name">;toggleNametag player</span></button>
+          <button class="admin-command-row" type="button" data-command=";togglePlayerlistIcon player"><span class="admin-command-name">;togglePlayerlistIcon player</span></button>
+          <button class="admin-command-row" type="button" data-command=";toggleCheckmark player"><span class="admin-command-name">;toggleCheckmark player</span></button>
+          <button class="admin-command-row" type="button" data-command=":forcechat player Hello"><span class="admin-command-name">:forcechat player Hello</span></button>
+          <button class="admin-command-row" type="button" data-command=":username me Player"><span class="admin-command-name">:username me Player</span></button>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <button id="admin-unfly-button" class="admin-unfly-button" type="button" hidden>unfly</button>
+  <aside id="graphics-settings" hidden aria-label="Graphics settings">
+    <div class="graphics-settings-title">Graphics settings</div>
+    <label class="graphics-setting-row" for="ssao-enabled">
+      <span>SSAO</span>
+      <input id="ssao-enabled" type="checkbox" checked />
+    </label>
+    <label class="graphics-setting-row" for="shadows-enabled">
+      <span>Dynamic shadows</span>
+      <input id="shadows-enabled" type="checkbox" checked />
+    </label>
+    <label class="graphics-setting-row" for="color-grading-enabled">
+      <span>Color grading</span>
+      <input id="color-grading-enabled" type="checkbox" checked />
+    </label>
+    <label class="graphics-setting-row" for="collision-boxes-enabled">
+      <span>Show collision boxes</span>
+      <input id="collision-boxes-enabled" type="checkbox" />
+    </label>
+    <label class="graphics-setting-row" for="player-collisions-enabled">
+      <span>Player collisions</span>
+      <input id="player-collisions-enabled" type="checkbox" checked />
+    </label>
+    <label class="graphics-setting-row graphics-range-row" for="render-quality">
+      <span>Render quality <output id="render-quality-value">100%</output></span>
+      <input id="render-quality" type="range" min="50" max="200" step="5" value="100" />
+    </label>
+    <label class="graphics-setting-row" for="shadow-quality">
+      <span>Shadow quality</span>
+      <select id="shadow-quality">
+        <option value="512">Low</option>
+        <option value="1024" selected>Medium</option>
+        <option value="2048">High</option>
+      </select>
+    </label>
+    <label class="graphics-setting-row" for="fps-limit">
+      <span>FPS limit</span>
+      <select id="fps-limit">
+        <option value="0" selected>Unlimited</option>
+        <option value="60">60</option>
+        <option value="45">45</option>
+        <option value="30">30</option>
+      </select>
+    </label>
+    <div class="graphics-settings-help">Turn off expensive effects if the scene feels slow.</div>
+    <button id="graphics-settings-reset" class="settings-reset" type="button">Restore defaults</button>
+  </aside>
+  <button id="leave-game-button" type="button" hidden>Leave</button>
+  <section id="avatar-editor" class="avatar-editor" hidden aria-label="Avatar texture editor">
+    <div class="avatar-editor-window">
+      <div class="avatar-editor-titlebar">
+        <span>Avatar texture</span>
+        <button id="avatar-editor-close" class="avatar-editor-close" type="button" aria-label="Close editor">×</button>
+      </div>
+      <div class="avatar-editor-toolbar">
+        <div class="avatar-editor-modes" role="group" aria-label="Avatar editor mode">
+          <button class="avatar-mode active" type="button" data-avatar-mode="texture">2D Texture</button>
+          <button class="avatar-mode" type="button" data-avatar-mode="world">3D World</button>
+          <button class="avatar-mode" type="button" data-avatar-mode="hats">Hats</button>
+        </div>
+        <div class="avatar-rig-switch" role="group" aria-label="Avatar rig">
+          <span>Rig</span>
+          <button class="avatar-rig active" type="button" data-avatar-rig="r6">R6</button>
+          <button class="avatar-rig" type="button" data-avatar-rig="r15">R15</button>
+        </div>
+        <div class="avatar-toolbar-group">
+        <button class="avatar-tool active" type="button" data-avatar-tool="pencil">Pencil</button>
+        <button class="avatar-tool" type="button" data-avatar-tool="eraser">Eraser</button>
+        <button class="avatar-tool" type="button" data-avatar-tool="bucket">Bucket</button>
+        <button class="avatar-tool" type="button" data-avatar-tool="select">Select</button>
+        <button class="avatar-tool" type="button" data-avatar-tool="shape">Shape</button>
+        <label class="avatar-shape-label" title="Shape type">
+          <span>Shape</span>
+          <select id="avatar-shape-type">
+            <option value="rectangle">Rectangle</option>
+            <option value="circle">Circle</option>
+            <option value="triangle">Triangle</option>
+            <option value="star">Star</option>
+            <option value="line">Line</option>
+          </select>
+        </label>
+        </div>
+        <div class="avatar-toolbar-group">
+        <label class="avatar-color-label" title="Brush color">
+          <span>Color</span>
+          <input id="avatar-brush-color" type="color" value="#e63946" />
+        </label>
+        <label class="avatar-size-label" for="avatar-brush-size">
+          <span>Size</span>
+          <input id="avatar-brush-size" type="range" min="1" max="32" step="1" value="6" />
+          <output id="avatar-brush-size-value">6</output>
+        </label>
+        <label class="avatar-range-label" for="avatar-bucket-tolerance">
+          <span>Tolerance</span>
+          <input id="avatar-bucket-tolerance" type="range" min="0" max="100" step="1" value="18" />
+          <output id="avatar-bucket-tolerance-value">18</output>
+        </label>
+        <label class="avatar-check-label" title="Blend the fill through the matching pixels">
+          <input id="avatar-bucket-transition" type="checkbox" />
+          <span>Color transition</span>
+        </label>
+        </div>
+        <div class="avatar-toolbar-group">
+        <label class="avatar-size-label" for="avatar-layer-width">
+          <span>Size X</span>
+          <input id="avatar-layer-width" type="number" min="2" max="4096" step="1" value="0" />
+          <output id="avatar-layer-width-value">—</output>
+        </label>
+        <label class="avatar-size-label" for="avatar-layer-height">
+          <span>Size Y</span>
+          <input id="avatar-layer-height" type="number" min="2" max="4096" step="1" value="0" />
+          <output id="avatar-layer-height-value">—</output>
+        </label>
+        <label class="avatar-range-label" for="avatar-layer-scale">
+          <span>Scale</span>
+          <input id="avatar-layer-scale" type="range" min="10" max="300" step="1" value="100" />
+          <output id="avatar-layer-scale-value">100%</output>
+        </label>
+        <label class="avatar-range-label" for="avatar-layer-rotation">
+          <span>Rotation</span>
+          <input id="avatar-layer-rotation" type="range" min="-180" max="180" step="1" value="0" />
+          <output id="avatar-layer-rotation-value">0°</output>
+        </label>
+        <label class="avatar-range-label" for="avatar-layer-saturation">
+          <span>Saturation</span>
+          <input id="avatar-layer-saturation" type="range" min="-2" max="2" step="0.1" value="0" />
+          <output id="avatar-layer-saturation-value">0</output>
+        </label>
+        <label class="avatar-range-label" for="avatar-layer-contrast">
+          <span>Contrast</span>
+          <input id="avatar-layer-contrast" type="range" min="-2" max="2" step="0.1" value="0" />
+          <output id="avatar-layer-contrast-value">0</output>
+        </label>
+        <label class="avatar-range-label" for="avatar-layer-hue">
+          <span>Hue</span>
+          <input id="avatar-layer-hue" type="range" min="-180" max="180" step="1" value="0" />
+          <output id="avatar-layer-hue-value">0°</output>
+        </label>
+        <button id="avatar-layer-pixel" type="button">Pixel effect</button>
+        <button id="avatar-layer-flip" type="button">Flip upside down</button>
+        <button id="avatar-3d-drag-mode" type="button" aria-pressed="false">3D drag mode</button>
+        <label class="avatar-check-label" title="Freeze the local avatar animation while editing">
+          <input id="avatar-lock-animation" type="checkbox" />
+          <span>Lock animation</span>
+        </label>
+        <label class="avatar-check-label" title="Freeze the game camera while editing">
+          <input id="avatar-lock-camera" type="checkbox" />
+          <span>Lock camera</span>
+        </label>
+        </div>
+        <div class="avatar-toolbar-group avatar-body-visibility" aria-label="Body part visibility">
+          <span class="avatar-visibility-title">Show body parts</span>
+          <label><input type="checkbox" data-avatar-body-part="head" checked /><span>Head</span></label>
+          <label><input type="checkbox" data-avatar-body-part="torso" checked /><span>Torso</span></label>
+          <label><input type="checkbox" data-avatar-body-part="leftArm" checked /><span>L arm</span></label>
+          <label><input type="checkbox" data-avatar-body-part="rightArm" checked /><span>R arm</span></label>
+          <label><input type="checkbox" data-avatar-body-part="leftLeg" checked /><span>L leg</span></label>
+          <label><input type="checkbox" data-avatar-body-part="rightLeg" checked /><span>R leg</span></label>
+        </div>
+        <div class="avatar-toolbar-group">
+        <button id="avatar-layer-add" type="button">+ Layer</button>
+        <button id="avatar-layer-delete" type="button">Delete layer</button>
+        <button id="avatar-layer-up" type="button" title="Move layer up">Layer ↑</button>
+        <button id="avatar-layer-down" type="button" title="Move layer down">Layer ↓</button>
+        <button id="avatar-image-paste" type="button">Paste image</button>
+        <label class="avatar-template-upload avatar-image-insert">
+          Insert image
+          <input id="avatar-image-insert" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+        </label>
+        <button id="avatar-editor-clear" type="button">Restore</button>
+        <button id="avatar-editor-undo" type="button" title="Undo">Undo</button>
+        <button id="avatar-editor-redo" type="button" title="Redo">Redo</button>
+        <button id="avatar-template-download" type="button" disabled>Download template</button>
+        <label class="avatar-template-upload">
+          Upload image
+          <input id="avatar-template-upload" type="file" accept="image/png,image/jpeg,image/webp" disabled />
+        </label>
+        </div>
+      </div>
+      <div class="avatar-editor-body">
+        <div class="avatar-canvas-wrap">
+          <canvas id="avatar-texture-canvas" width="512" height="512"></canvas>
+        </div>
+        <aside class="avatar-layers-panel" aria-label="Layers">
+          <div class="avatar-layers-heading">
+            <span>Layers</span>
+            <span id="avatar-layer-count">1</span>
+          </div>
+          <div id="avatar-layer-list" class="avatar-layer-list"></div>
+          <p id="avatar-layer-help" class="avatar-layer-help">Select a layer to move, resize or filter it. Drag on a paint layer to select an area.</p>
+        </aside>
+      </div>
+      <div id="avatar-world-hint" class="avatar-world-hint" hidden>
+        3D World mode • paint the avatar or accessories, or enable 3D drag mode for selected layers
+      </div>
+      <div id="avatar-hats-panel" class="avatar-hats-panel" hidden aria-label="Hats and hair">
+        <div class="avatar-hats-preview-col">
+          <div class="avatar-hats-heading"><span>Avatar preview</span><small>live hats preview</small></div>
+          <div id="avatar-hats-preview" class="avatar-hats-preview">
+            <canvas id="avatar-hats-preview-canvas" aria-label="Avatar hat preview"></canvas>
+          </div>
+        </div>
+        <div class="avatar-hats-equip-col">
+          <div class="avatar-hats-heading"><span>Equip accessories</span><small>multiple at once</small></div>
+          <div id="avatar-hats-equip-list" class="avatar-hats-equip-list"></div>
+        </div>
+        <div class="avatar-hats-hair-col">
+          <div class="avatar-hats-heading"><span>Paint hats &amp; hair</span><small>custom texture</small></div>
+          <div class="hat-paint-canvas-wrap">
+            <canvas id="hair-texture-canvas" width="256" height="256"></canvas>
+            <canvas id="hair-texture-selection" width="256" height="256" aria-hidden="true"></canvas>
+          </div>
+          <div class="avatar-hats-controls">
+            <label title="Hair brush color"><span>Color</span><input id="hair-brush-color" type="color" value="#7a5230" /></label>
+            <label for="hair-brush-size"><span>Pencil slider</span><input id="hair-brush-size" type="range" min="1" max="40" step="1" value="8" /><output id="hair-brush-size-value">8</output></label>
+            <label for="hair-hue"><span>Hue</span><input id="hair-hue" type="range" min="-180" max="180" step="1" value="0" /></label>
+            <button id="hair-tool-pencil" type="button" data-hair-tool="pencil">Pencil</button>
+            <button id="hair-tool-select" type="button" data-hair-tool="select">Select</button>
+            <button id="hair-tool-move" type="button" data-hair-tool="move">Move texture</button>
+            <button id="hair-tool-rectangle" type="button" data-hair-tool="rectangle">Rectangle</button>
+            <button id="hair-tool-circle" type="button" data-hair-tool="circle">Circle</button>
+            <button id="hair-tool-line" type="button" data-hair-tool="line">Line</button>
+            <button id="hair-tool-flip" type="button">Flip upside down</button>
+            <button id="hair-hats-eraser" type="button" data-hair-tool="eraser">Eraser</button>
+            <button id="hair-hats-bucket" type="button" data-hair-tool="bucket">Bucket</button>
+          </div>
+          <div class="hat-paint-layers" aria-label="Hat paint layers">
+            <label><span>Layer</span><select id="hat-paint-layer-select"></select></label>
+            <button id="hat-paint-layer-add" type="button">+ Layer</button>
+            <button id="hat-paint-layer-delete" type="button">Delete layer</button>
+            <button id="hat-paint-layer-visible" type="button">Hide layer</button>
+            <label><span>Opacity</span><input id="hat-paint-layer-opacity" type="range" min="0" max="1" step="0.05" value="1" /></label>
+          </div>
+          <label class="avatar-template-upload" title="Use an image file as this hat's texture">
+            Insert texture
+            <input id="hat-texture-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+          </label>
+          <button id="hat-texture-paste" class="avatar-apply" type="button">Paste texture (Ctrl+V)</button>
+          <button id="hat-texture-restore" class="hat-reset-button" type="button">Restore texture</button>
+          <button id="avatar-hats-apply" class="avatar-apply" type="button">Apply hat paint</button>
+        </div>
+        <div class="avatar-hats-adjust-col">
+          <div class="avatar-hats-heading"><span>Hat settings</span><small>live preview while equipped</small></div>
+          <label class="avatar-hats-adjust-hat" title="Hat to adjust"><span>Hat</span>
+            <select id="hat-adjust-select"></select>
+          </label>
+          <label class="avatar-hats-adjust-hat" title="Body part where this hat is attached"><span>Attach</span>
+            <select id="hat-adjust-attach">
+              <option value="Head">Head</option>
+              <option value="Torso">Torso</option>
+              <option value="LeftArm">Left arm</option>
+              <option value="RightArm">Right arm</option>
+              <option value="LeftLeg">Left leg</option>
+              <option value="RightLeg">Right leg</option>
+            </select>
+          </label>
+          <button id="hat-adjust-reset" class="hat-reset-button" type="button">Restore default</button>
+          <div class="avatar-hats-style-grid">
+            <label><span>Tint</span><input id="hat-style-tint" type="color" value="#ffffff" /></label>
+            <label><span>Hue</span><input id="hat-style-hue" type="range" min="-180" max="180" step="1" value="0" /><output id="hat-style-hue-value">0°</output></label>
+            <label><span>Saturation</span><input id="hat-style-saturation" type="range" min="0" max="2" step="0.05" value="1" /><output id="hat-style-saturation-value">1</output></label>
+            <label><span>Lightness</span><input id="hat-style-lightness" type="range" min="0.2" max="2" step="0.05" value="1" /><output id="hat-style-lightness-value">1</output></label>
+            <label><span>Opacity</span><input id="hat-style-opacity" type="range" min="0.1" max="1" step="0.05" value="1" /><output id="hat-style-opacity-value">1</output></label>
+            <label><span>Shine</span><input id="hat-style-shininess" type="range" min="0" max="100" step="1" value="8" /><output id="hat-style-shininess-value">8</output></label>
+            <label title="Roughness (defaults to the player material)"><span>Roughness</span><input id="hat-style-roughness" type="range" min="0" max="1" step="0.001" value="0.5" /><output id="hat-style-roughness-value">0.50</output></label>
+            <label title="Metalness (defaults to the player material)"><span>Metalness</span><input id="hat-style-metalness" type="range" min="0" max="1" step="0.01" value="0" /><output id="hat-style-metalness-value">0.00</output></label>
+            <label title="Specular (defaults to the player material)"><span>Specular</span><input id="hat-style-specular" type="range" min="0" max="1" step="0.001" value="0.1" /><output id="hat-style-specular-value">0.10</output></label>
+          </div>
+          <div class="avatar-hats-adjust-grid">
+            <label title="Position X"><span>X</span><input id="hat-adjust-x" type="range" min="-3" max="3" step="0.05" value="0" /><output id="hat-adjust-x-value">0</output></label>
+            <label title="Position Y"><span>Y</span><input id="hat-adjust-y" type="range" min="-3" max="3" step="0.05" value="0" /><output id="hat-adjust-y-value">0</output></label>
+            <label title="Position Z"><span>Z</span><input id="hat-adjust-z" type="range" min="-3" max="3" step="0.05" value="0" /><output id="hat-adjust-z-value">0</output></label>
+            <label title="Uniform hat size"><span>Size</span><input id="hat-adjust-scale" type="range" min="0.1" max="4" step="0.05" value="1" /><output id="hat-adjust-scale-value">1</output></label>
+            <label title="Rotation X"><span>Rot X</span><input id="hat-adjust-rx" type="range" min="-180" max="180" step="1" value="0" /><output id="hat-adjust-rx-value">0</output></label>
+            <label title="Rotation Y"><span>Rot Y</span><input id="hat-adjust-ry" type="range" min="-180" max="180" step="1" value="0" /><output id="hat-adjust-ry-value">0</output></label>
+            <label title="Rotation Z"><span>Rot Z</span><input id="hat-adjust-rz" type="range" min="-180" max="180" step="1" value="0" /><output id="hat-adjust-rz-value">0</output></label>
+          </div>
+          <section id="hardcore-custom-hat-panel" class="hardcore-custom-hat-panel" hidden>
+            <div class="hardcore-custom-hat-heading">
+              <span>Hardcore custom hat</span>
+              <small>Owner only</small>
+            </div>
+            <label class="hardcore-file-label">Hat model (.obj)
+              <input id="hardcore-custom-hat-model" type="file" accept=".obj,model/obj,text/plain" />
+            </label>
+            <label class="hardcore-file-label">Material (.mtl, optional for OBJ)
+              <input id="hardcore-custom-hat-mtl" type="file" accept=".mtl,text/plain" />
+            </label>
+            <label class="hardcore-file-label">Texture (optional)
+              <input id="hardcore-custom-hat-texture" type="file" accept="image/png,image/jpeg,image/webp" />
+            </label>
+            <label class="hardcore-file-label">Attach to body part
+              <select id="hardcore-custom-hat-attach">
+                <option value="Head">Head</option>
+                <option value="Torso">Torso</option>
+                <option value="LeftArm">Left arm</option>
+                <option value="RightArm">Right arm</option>
+                <option value="LeftLeg">Left leg</option>
+                <option value="RightLeg">Right leg</option>
+              </select>
+            </label>
+            <label class="hardcore-custom-hat-enabled">
+              <input id="hardcore-custom-hat-enabled" type="checkbox" checked />
+              <span>Enable imported hat</span>
+            </label>
+            <button id="hardcore-custom-hat-import" type="button">Import / replace hat</button>
+            <button id="hardcore-custom-hat-delete" type="button">Delete selected custom hat</button>
+            <small id="hardcore-custom-hat-status" class="hardcore-custom-hat-status">No custom hat imported</small>
+          </section>
+        </div>
+      </div>
+      <div class="avatar-editor-footer">
+        <span id="avatar-editor-status">Loading texture…</span>
+        <button id="avatar-editor-apply" class="avatar-apply" type="button">Apply</button>
+      </div>
+    </div>
+  </section>
+  <aside id="chat-settings" hidden aria-label="Chat settings">
+    <div class="chat-settings-title">Chat settings</div>
+    <label for="chat-font-size">Chat font size <output id="chat-font-size-value">13</output></label>
+    <input id="chat-font-size" type="range" min="10" max="28" step="1" value="13" />
+    <label for="player-list-font-size">Player list font size <output id="player-list-font-size-value">14</output></label>
+    <input id="player-list-font-size" type="range" min="10" max="24" step="1" value="14" />
+    <label for="backpack-font-size">Backpack font size <output id="backpack-font-size-value">14</output></label>
+    <input id="backpack-font-size" type="range" min="10" max="24" step="1" value="14" />
+    <label for="player-list-slice-scale">Player list slice scale <output id="player-list-slice-scale-value">100%</output></label>
+    <input id="player-list-slice-scale" type="range" min="50" max="200" step="5" value="100" />
+    <div class="chat-settings-title">Bubble chat</div>
+    <label for="bubble-chat-font-size">Bubble font size <output id="bubble-chat-font-size-value">18</output></label>
+    <input id="bubble-chat-font-size" type="range" min="12" max="36" step="1" value="18" />
+    <label for="bubble-chat-scale">Bubble scale <output id="bubble-chat-scale-value">100%</output></label>
+    <input id="bubble-chat-scale" type="range" min="50" max="150" step="5" value="100" />
+    <label for="bubble-chat-slice-scale">Bubble slice scale <output id="bubble-chat-slice-scale-value">50%</output></label>
+    <input id="bubble-chat-slice-scale" type="range" min="50" max="200" step="5" value="50" />
+    <label for="chat-message-color">Message color</label>
+    <input id="chat-message-color" type="color" value="#ffffff" />
+    <label for="chat-bar-color">ChatBar color</label>
+    <input id="chat-bar-color" type="color" value="#000000" />
+    <label for="chat-align">Text alignment</label>
+    <select id="chat-align">
+      <option value="left" selected>Left</option>
+      <option value="center">Center</option>
+      <option value="right">Right</option>
+    </select>
+    <label for="chat-stroke-color">UIStroke color</label>
+    <input id="chat-stroke-color" type="color" value="#000000" />
+    <label for="chat-stroke-width">Stroke <output id="chat-stroke-width-value">1.75</output></label>
+    <input id="chat-stroke-width" type="range" min="0" max="4" step="0.25" value="1.75" />
+    <label for="chat-stroke-alpha">Alpha <output id="chat-stroke-alpha-value">0.4</output></label>
+    <input id="chat-stroke-alpha" type="range" min="0" max="1" step="0.05" value="0.4" />
+    <label for="chat-stroke-softness">Softness <output id="chat-stroke-softness-value">0.5</output></label>
+    <input id="chat-stroke-softness" type="range" min="0" max="5" step="0.25" value="0.5" />
+    <div class="chat-settings-title">All materials</div>
+    <label for="material-roughness">Roughness <output id="material-roughness-value">0.50</output></label>
+    <input id="material-roughness" type="range" min="0" max="1" step="0.001" value="0.5" />
+    <label for="material-metalness">Metalness <output id="material-metalness-value">0.00</output></label>
+    <input id="material-metalness" type="range" min="0" max="1" step="0.01" value="0" />
+    <label for="material-reflectivity">Reflectivity <output id="material-reflectivity-value">0.00</output></label>
+    <input id="material-reflectivity" type="range" min="0" max="1" step="0.01" value="0" />
+    <label for="material-specular">Specular <output id="material-specular-value">0.10</output></label>
+    <input id="material-specular" type="range" min="0" max="1" step="0.001" value="0.1" />
+    <div class="chat-settings-title">SSAO</div>
+    <label for="ssao-radius">Radius <output id="ssao-radius-value">1</output></label>
+    <input id="ssao-radius" type="range" min="1" max="32" step="1" value="1" />
+    <label for="ssao-strength">Strength <output id="ssao-strength-value">0.75</output></label>
+    <input id="ssao-strength" type="range" min="0" max="3" step="0.01" value="0.75" />
+    <label for="ssao-min-distance">Min Distance <output id="ssao-min-distance-value">0.00</output></label>
+    <input id="ssao-min-distance" type="range" min="0" max="1" step="0.01" value="0" />
+    <label for="ssao-max-distance">Max Distance <output id="ssao-max-distance-value">1.00</output></label>
+    <input id="ssao-max-distance" type="range" min="0" max="1" step="0.01" value="1" />
+    <div class="chat-settings-title">Color Grading</div>
+    <label for="tone-mapping">Tone Mapping</label>
+    <select id="tone-mapping">
+      <option value="none" selected>None</option>
+      <option value="linear">Linear</option>
+      <option value="reinhard">Reinhard</option>
+      <option value="cineon">Cineon</option>
+      <option value="aces">ACES Filmic</option>
+    </select>
+    <label for="tone-mapping-exposure">Exposure <output id="tone-mapping-exposure-value">1.00</output></label>
+    <input id="tone-mapping-exposure" type="range" min="0.1" max="3" step="0.01" value="1" />
+    <label for="color-saturation">Saturation <output id="color-saturation-value">1.00</output></label>
+    <input id="color-saturation" type="range" min="0" max="2" step="0.01" value="1" />
+    <label for="color-contrast">Contrast <output id="color-contrast-value">1.00</output></label>
+    <input id="color-contrast" type="range" min="0.5" max="1.5" step="0.01" value="1" />
+    <label for="color-brightness">Brightness <output id="color-brightness-value">0.00</output></label>
+    <input id="color-brightness" type="range" min="-0.5" max="0.5" step="0.01" value="0" />
+    <button id="chat-settings-reset" class="settings-reset" type="button">Restore defaults</button>
+  </aside>
+  <aside id="minesweeper-panel" hidden aria-label="Minesweeper">
+    <div class="minesweeper-window">
+      <div class="minesweeper-titlebar">
+        <span>Minesweeper</span>
+        <button id="minesweeper-close" class="minesweeper-close" type="button" aria-label="Close minesweeper">×</button>
+      </div>
+      <div class="minesweeper-top">
+        <div id="minesweeper-flags" class="minesweeper-stat">—</div>
+        <button id="minesweeper-restart" class="minesweeper-restart" type="button" title="Restart">Reset</button>
+        <div id="minesweeper-timer" class="minesweeper-stat">0</div>
+      </div>
+      <div id="minesweeper-board" class="minesweeper-board"></div>
+    </div>
+  </aside>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+      }
+    }
+  </script>
+  <script src="inventory.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

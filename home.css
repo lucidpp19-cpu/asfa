@@ -1,0 +1,132 @@
+/* The supplied home page keeps its original markup and visual styles. */
+
+#game-frame {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  border: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .12s ease;
+}
+
+.home-page.game-playing #game-frame {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#game-details-frame {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  border: 0;
+  background: #f2f4f5;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .12s ease;
+}
+
+.home-page.game-open:not(.game-playing) #game-details-frame {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The captured home markup owns the iframe node too. Hide only the saved
+   home content; hiding #__next itself also hides the game canvas. */
+.home-page.game-open > #__next > div:first-child {
+  display: none !important;
+}
+
+/* Temporary links remain visible, but are deliberately inert. */
+.home-page .home-disabled-link,
+.home-page .home-disabled-link:hover,
+.home-page .home-disabled-link:focus {
+  color: inherit !important;
+  opacity: .2 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  text-decoration: none !important;
+}
+
+.home-page .alertText-0-2-39 .home-disabled-link {
+  opacity: 1 !important;
+}
+
+/* Preserve the ad slots while removing the captured ad artwork. */
+.home-page .adImage-0-2-86 {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Keep the Home ad slot in the layout, but leave it empty and transparent. */
+.home-page .home-ad-column {
+  align-items: flex-start;
+  padding-left: 4px;
+  padding-right: 4px;
+  justify-content: center;
+  min-height: 620px;
+}
+
+@media (min-width: 992px) {
+  .home-page .home-ad-column {
+    display: flex !important;
+  }
+
+  .home-page .home-ad-placeholder {
+    display: block;
+    width: 160px;
+    height: 620px;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+.home-page .imgDesktop-0-2-12,
+.home-page .imgMobile-0-2-13 {
+  background-image: url("upload/coloredlogo.png.png") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.home-page .imgDesktop-0-2-12 {
+  width: 148px !important;
+  height: 48px !important;
+}
+
+.home-page .home-mobile-sidebar[hidden] {
+  display: none !important;
+}
+
+/* Keep every sidebar label in the original dark text color. */
+.home-page .home-mobile-sidebar,
+.home-page .home-mobile-sidebar * {
+  color: rgb(57, 59, 61) !important;
+}
+
+.home-page .home-mobile-sidebar .upgradeNowButton-0-2-95 {
+  color: white !important;
+}
+
+/* The script keeps this value synchronized with the navbar's real height. */
+.home-page .home-mobile-sidebar {
+  top: var(--home-navbar-height, 40px) !important;
+}
+
+@media (max-width: 991px) {
+  .home-page .home-mobile-sidebar {
+    top: var(--home-navbar-height, 88px) !important;
+  }
+}
