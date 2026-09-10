@@ -43,9 +43,27 @@
     element.remove();
   });
 
+  const baseplateCard = document.querySelector(".gameCard-0-2-122[aria-label='Baseplate']");
+  if (baseplateCard && !document.querySelector("[aria-label='Faundry Highschool RP']")) {
+    const schoolCard = baseplateCard.cloneNode(true);
+    schoolCard.setAttribute("aria-label", "Faundry Highschool RP");
+    schoolCard.dataset.gameId = "faundry-highschool-rp";
+    const image = schoolCard.querySelector("img.img-0-2-119");
+    if (image) {
+      image.src = "/uploads/image-19.png";
+      image.alt = "Faundry Highschool RP";
+      image.removeAttribute("data-savepage-src");
+    }
+    const label = schoolCard.querySelector(".label-0-2-114");
+    if (label) label.textContent = "Faundry Highschool RP";
+    const info = schoolCard.querySelector(".infoRow-0-2-115");
+    if (info) info.innerHTML = '<span class="infoItem-0-2-116">54M visits</span><span class="infoItem-0-2-116">382K likes</span>';
+    baseplateCard.parentElement?.appendChild(schoolCard);
+  }
+
   const cardLinks = [...document.querySelectorAll(
-    ".gameCard-0-2-122[aria-label='Baseplate'], .gameCard-0-2-122"
-  )].filter((link) => link.querySelector(".label-0-2-114")?.textContent.trim() === "Baseplate");
+    ".gameCard-0-2-122[aria-label='Baseplate'], .gameCard-0-2-122[aria-label='Faundry Highschool RP']"
+  )];
 
   const detailsFrame = document.createElement("iframe");
   detailsFrame.id = "games-details-frame";
@@ -66,13 +84,19 @@
 
   document.body.append(detailsFrame, gameFrame);
 
+  let selectedGame = "Baseplate";
   const gameContext = () => {
-    const image = cardLinks[0]?.querySelector("img.img-0-2-119");
+    const selectedCard = cardLinks.find((card) => card.getAttribute("aria-label") === selectedGame) || cardLinks[0];
+    const image = selectedCard?.querySelector("img.img-0-2-119");
     return {
       type: "webblox:game-context",
-      title: "Baseplate",
+      title: selectedGame,
       creator: "by hardcore",
       iconUrl: image?.currentSrc || image?.src || "/uploads/image-19.png",
+      visits: selectedGame === "Faundry Highschool RP" ? "54M" : "0",
+      likes: selectedGame === "Faundry Highschool RP" ? "382K" : "0",
+      dislikes: selectedGame === "Faundry Highschool RP" ? "24K" : "0",
+      favorites: selectedGame === "Faundry Highschool RP" ? "2,592,519" : "0",
     };
   };
 
@@ -107,6 +131,7 @@
   const openDetails = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    selectedGame = event.currentTarget.getAttribute("aria-label") || "Baseplate";
     document.body.classList.add("games-open");
     document.body.classList.remove("games-playing");
     detailsFrame.hidden = false;

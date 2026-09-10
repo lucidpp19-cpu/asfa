@@ -70,7 +70,7 @@ input[type="color"] {
 }
 
 /* Roblox-inspired username gate built from the site's navy, slate, and blue palette. */
-.username-screen { display: grid; place-items: center; background: rgba(8, 13, 24, .86); color: #f7f9fc; font-family: "Source Sans Pro", Arial, sans-serif; padding: 24px; }
+.username-screen { display: grid; position: fixed; z-index: 1200; inset: 0; place-items: center; background: rgba(8, 13, 24, .96); color: #f7f9fc; font-family: "Source Sans Pro", Arial, sans-serif; padding: 24px; }
 .username-card { width: min(100%, 420px); overflow: hidden; border: 1px solid #526887; border-radius: 8px; background: #1b2941; box-shadow: 0 20px 55px rgba(0, 0, 0, .48); }
 .username-card::before { display: block; height: 5px; background: #9fc2ff; content: ""; }
 .username-brand-mark { display: grid; place-items: center; width: 58px; height: 58px; margin: 28px auto 18px; border: 2px solid #dbe8ff; border-radius: 5px; background: #9fc2ff; color: #1b2941; font-size: 34px; font-weight: 900; transform: skew(-7deg); }
