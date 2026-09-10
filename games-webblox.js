@@ -57,13 +57,26 @@
     const label = schoolCard.querySelector(".label-0-2-114");
     if (label) label.textContent = "Faundry Highschool RP";
     const info = schoolCard.querySelector(".infoRow-0-2-115");
-    if (info) info.innerHTML = '<span class="infoItem-0-2-116">54M visits</span><span class="infoItem-0-2-116">382K likes</span>';
+    if (info) {
+      info.innerHTML = '<span class="infoItem-0-2-116">54M visits</span><span class="infoItem-0-2-116">13.7K active players</span><span class="infoItem-0-2-116 game-approval" title="100% approval"><span class="game-approval-icon" aria-hidden="true">✓</span><span>100%</span></span>';
+    }
     baseplateCard.parentElement?.appendChild(schoolCard);
   }
 
   const cardLinks = [...document.querySelectorAll(
     ".gameCard-0-2-122[aria-label='Baseplate'], .gameCard-0-2-122[aria-label='Faundry Highschool RP']"
   )];
+
+  const schoolCard = cardLinks.find((card) => card.getAttribute("aria-label") === "Faundry Highschool RP");
+  if (schoolCard) {
+    let info = schoolCard.querySelector(".infoRow-0-2-115");
+    if (!info) {
+      info = document.createElement("div");
+      info.className = "infoRow-0-2-115 infoRow-d1-0-2-126";
+      schoolCard.querySelector(".pe-2")?.append(info);
+    }
+    info.innerHTML = '<span class="infoItem-0-2-116">54M visits</span><span class="infoItem-0-2-116">13.7K active players</span><span class="infoItem-0-2-116 game-approval" title="100% approval"><span class="game-approval-icon" aria-hidden="true">✓</span><span>100%</span></span>';
+  }
 
   const detailsFrame = document.createElement("iframe");
   detailsFrame.id = "games-details-frame";
